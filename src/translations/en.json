@@ -1,0 +1,68 @@
+{
+
+    "home-header": {
+        "speciality": "Specialist medical examination",
+        "search-doctor": "Find a doctor by specialization",
+        "healthcare-facility": "Healthcare facility",
+        "select-hospital": "Select a hospital or clinic",
+        "doctor": "Good doctor",
+        "select-doctor": "Choosing a doctor",
+        "fee": "Medical examination package",
+        "general-check": "Choosing medical examination package",
+        "support": "Support"  ,
+        "welcome": "Welcome, "
+    },
+    "banner": {
+        "title1": "Health system",
+        "title2": "Comprehensive healthcare",
+        "option1FirstText": "Specialist",
+        "option1SecondText": "examination",
+        "option2FirstText": "Remote ",
+        "option2SecondText": "examination",
+        "option3FirstText": "General",
+        "option3SecondText": "health examination",
+        "option4FirstText": "Medical",
+        "option4SecondText": "testing",
+        "option5FirstText": "Mental",
+        "option5SecondText": "health",
+        "option6FirstText": "Dental",
+        "option6SecondText": "examination"
+    },
+    "menu": {
+            "admin": {
+                "manage-user": "Users system ",
+                "manage-doctor": "Manage doctor",
+                "manage-admin": "Manage admin",
+                "crud": "CRUD user",
+                "crud-redux": "CRUD redux",
+                "clinic": "Clinics",
+                "manage-clinic": "Manage clinics",
+                "specialty": "Specialties",
+                "manage-specialty": "Manage specialties",
+                "handBook": "HandBook",
+                "manage-handBook": "Manage hand book"
+            }
+    },
+    "manage-user": {
+        "add-new-user": "Add new user",
+        "email": "Email",
+        "password": "Password",
+        "first-name": "First name",
+        "last-name": "Last name",
+        "phone-number": "Phone number",
+        "address": "Address",
+        "gender": "Gender",
+        "role": "RoleID",
+        "position": "Position",
+        "image": "Avatar",
+        "save": "Save user",
+        "edit": "Save changes",
+        "cancel": "Cancel"
+        
+    },
+    "home-page": {
+        "out-stand-doctor": "Outstanding doctor",
+        "find": "Search"
+    }
+
+}

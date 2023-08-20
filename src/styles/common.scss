@@ -1,0 +1,47 @@
+@import "variables";
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.text-red {
+    color: $common-red !important;
+}
+.text-12 {
+    font-size: 12px;
+}
+.text-14 {
+    font-size: 14px;
+}
+.text-16 {
+    font-size: 16px;
+}
+.main-text-color {
+    color: #333;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.loader {
+    border: 10px solid #f3f3f3;
+    text-align: center;
+    border-top: 10px solid #3498db;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s linear infinite;
+}

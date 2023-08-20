@@ -1,0 +1,65 @@
+{
+    "home-header": {
+        "speciality": "Chuyên khoa",
+        "search-doctor": "Tìm bác sĩ theo chuyên khoa",
+        "healthcare-facility": "Cơ sở ý tế",
+        "select-hospital": "Chọn bệnh viện phòng khám",
+        "doctor": "Bác sĩ giỏi",
+        "select-doctor": "Chọn một bác sĩ giỏi",
+        "fee": "Gói khám",
+        "general-check": "Chọn gói khám",
+        "support": "Hỗ trợ"  ,
+        "welcome": "Xin chào, "
+    },
+    "banner": {
+        "title1": "Nền tảng y tế",
+        "title2": "Chăm sóc sức khỏe toàn diện",
+        "option1FirstText": "Khám",
+        "option1SecondText": "chuyên khoa",
+        "option2FirstText": "Khám",
+        "option2SecondText": "từ xa",
+        "option3FirstText": "Khám",
+        "option3SecondText": "tổng quát",
+        "option4FirstText": "Xét",
+        "option4SecondText": "nghiệm y học",
+        "option5FirstText": "Sức",
+        "option5SecondText": "khỏe tinh thần",
+        "option6FirstText": "Khám",
+        "option6SecondText": "nha khoa"
+    },
+    "menu": {
+        "admin": {
+            "manage-user": "Người dùng",
+            "manage-doctor": "Quản lý bác sĩ",
+            "manage-admin": "Quản lý admin",
+            "crud": "CRUD user",
+            "crud-redux": "CRUD redux",
+            "clinic": "Phòng khám",
+            "manage-clinic": "Quản lý phòng khám",
+            "specialty": "Chuyên khoa",
+            "manage-specialty": "Quản lý chuyên khoa",
+            "handBook": "Cẩm nang",
+            "manage-handBook": "Quản lý cẩm nang"
+        }
+    },
+    "manage-user": {
+        "add-new-user": "Add new user",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "first-name": "Tên",
+        "last-name": "Họ",
+        "phone-number": "Số điện thoại",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "role": "Vai trò",
+        "position": "Vị trí",
+        "image": "Ảnh đại diện",
+        "save": "Lưu user",
+        "edit": "Lưu thay đổi",
+        "cancel": "Hủy"
+    },
+    "home-page": {
+        "out-stand-doctor": "Bác sĩ nổi bật",
+        "find" :"Tìm kiếm"
+    }
+}

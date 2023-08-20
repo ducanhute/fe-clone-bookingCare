@@ -1,0 +1,176 @@
+.share-slick-style {
+    height: 330px;
+    border-bottom: 3px solid #efeef5;
+    .total-content {
+        padding-right: 15px px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        @media (min-width: 768px) {
+            width: 750px;
+            margin: auto;
+        }
+        @media (min-width: 992px) {
+            width: 970px;
+            margin: auto;
+        }
+        @media (min-width: 1200px) {
+            width: 1170px;
+            margin: auto;
+        }
+        .wrap-content {
+            padding-top: 20px;
+            padding-bottom: 30px;
+            position: relative;
+            .title-content {
+                margin-bottom: 20px;
+                .title-text {
+                    font-size: 24px;
+                    font-weight: bold;
+                    padding: 15px 0px 5px 0px;
+                }
+                .see-more-btn {
+                    padding: 10px 15px;
+                    color: #282e41;
+                    font-size: 11px;
+                    background: #ebebeb;
+                    text-transform: uppercase;
+                    cursor: pointer;
+                    &:hover {
+                        background: #f7d800;
+                    }
+                }
+            }
+            .slider-content {
+                .slick-prev {
+                    left: -10px !important;
+                    top: 44% !important;
+                    background: #ffff !important;
+                    width: 40px !important;
+                    height: 40px !important;
+                    z-index: 999 !important;
+                    &::before {
+                        font-family: FontAwesome;
+                        content: "\f104" !important;
+                        display: inline-block;
+                        padding-right: 3px;
+                        vertical-align: middle;
+                        color: #959595;
+                        font-size: 30px;
+                    }
+                }
+                .slick-next {
+                    right: -10px !important;
+                    top: 44% !important;
+                    background: #ffff !important;
+                    width: 40px !important;
+                    height: 40px !important;
+                    z-index: 999 !important;
+                    &::before {
+                        font-family: FontAwesome;
+                        content: "\f105" !important;
+                        display: inline-block;
+                        padding-right: 3px;
+                        vertical-align: middle;
+                        color: #959595;
+                        font-size: 30px;
+                    }
+                }
+                .wrap-item {
+                    width: 278px;
+                    padding: 10px;
+
+                    h3 {
+                        color: #111;
+                        padding: 5px 0;
+                        font-size: 13px;
+                    }
+                    .image-slick {
+                        width: 100%;
+                        height: 150px;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-color: #eee;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.section-specialty {
+    background: #fff;
+    .image-slick {
+        background-image: url("../../assets/images/Speciallty/1.jpg");
+    }
+}
+
+.section-outstand-facility {
+    background: #f5f5f5;
+    .wrap-item {
+        .image-slick {
+            background-image: url("../../assets/images/outstandFacility/1.jpg");
+            height: 137px !important;
+        }
+    }
+}
+.section-outstand-doctor {
+    background: #fff;
+    .border-item {
+        margin-left: 10px;
+    }
+    .wrap-item {
+        border: 1px solid #eee;
+        .image-slick {
+            background-image: url("../../assets/images/outstandDoctor/1.jpg");
+            border-radius: 50%;
+            height: 120px !important;
+            width: 120px !important;
+        }
+    }
+    .slick-prev,
+    .slick-next {
+        border: 1px solid #eee;
+    }
+}
+.section-guide-book {
+    background: #f5f5f5;
+    height: auto !important;
+    .wrap-item {
+        padding: 0 !important;
+        .image-slick {
+            background-image: url("../../assets/images/guidebook/1.png");
+            width: 282px !important;
+            height: 120px !important;
+            flex: none;
+            background-position: top center;
+        }
+    }
+    h3 {
+        color: #333 !important;
+        font-weight: bold;
+        font-size: 16px !important;
+        margin-bottom: 15px !important;
+        padding: 0 10px !important;
+    }
+}
+.video-about {
+    background: #fff;
+    height: auto !important;
+}
+.footer-content {
+    height: auto !important;
+    background: #f5f5f5;
+    .cp-text {
+        padding-top: 10px;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.7);
+        text-shadow: 0 1px rgba(255, 255, 255, 0.1);
+    }
+}
+// Custom library global
+.slick-disabled {
+    display: none !important;
+}
