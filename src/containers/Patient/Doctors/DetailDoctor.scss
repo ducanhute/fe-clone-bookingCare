@@ -1,0 +1,33 @@
+.wrap-bg-gray {
+    background-color: #f3f3f3;
+}
+.wrap-bg-white {
+    background-color: white;
+}
+.border-bottom {
+    border-bottom: 1px solid #ccc;
+}
+.doctor-detail-container {
+    margin: 0 auto;
+    @media (min-width: 768px) {
+        width: 750px;
+    }
+    @media (min-width: 992px) {
+        width: 970px;
+    }
+    @media (min-width: 1200px) {
+        width: 1170px;
+    }
+}
+.intro-doctor {
+    .avatar-wrap {
+        margin-right: 15px;
+        .avatar {
+            width: 120px;
+            height: 120px;
+            background-position: center;
+            background-size: cover;
+            border-radius: 50%;
+        }
+    }
+}

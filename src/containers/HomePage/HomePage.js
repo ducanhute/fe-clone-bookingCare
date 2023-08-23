@@ -33,7 +33,7 @@ class HomePage extends Component {
 
         return (
             <>
-                <HomeHeader />
+                <HomeHeader isShowBanner={true} />
                 <Specialty Slider={Slider1} settings={settings} />
                 <OutStandFacility Slider={Slider1} settings={settings} />
                 <OutstandDoctor Slider={Slider1} settings={settings} />

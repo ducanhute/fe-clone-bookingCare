@@ -5,10 +5,14 @@ import "./HomeHeader.scss";
 import { icon1Header, icon2Header, icon3Header, icon4Header, icon5Header, icon6Header } from "../../../assets/Image.js";
 import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../../utils";
-import { changeLanguageApp } from "../../../store/actions";
+import { withRouter } from "react-router";
 class Header extends Component {
     changeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language);
+    };
+    handleOnclickLogo = () => {
+        console.log("hihi");
+        this.props.history.push("/home");
     };
     render() {
         const data = [
@@ -49,7 +53,8 @@ class Header extends Component {
                     <div className="home-header-content align-items-center">
                         <div className="left-content h-100 ">
                             <i className="fa-solid fa-bars"></i>
-                            <div className="header-logo h-75"></div>
+
+                            <div onClick={() => this.handleOnclickLogo()} className="header-logo h-75"></div>
                         </div>
                         <div className="center-content d-flex justify-content-between ">
                             <div className="child-content main-text-color">
@@ -116,35 +121,37 @@ class Header extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="home-header-banner">
-                    <div className="wrap-title-search">
-                        <h2 className="title1 text-center text-white pt-5  ">
-                            {" "}
-                            <FormattedMessage id="banner.title1" />
-                        </h2>
-                        <h2 className="title2 text-center text-white ">
-                            <FormattedMessage id="banner.title2" />
-                        </h2>
+                {this.props.isShowBanner && (
+                    <div className="home-header-banner">
+                        <div className="wrap-title-search">
+                            <h2 className="title1 text-center text-white pt-5  ">
+                                {" "}
+                                <FormattedMessage id="banner.title1" />
+                            </h2>
+                            <h2 className="title2 text-center text-white ">
+                                <FormattedMessage id="banner.title2" />
+                            </h2>
 
-                        <div className="search m-auto mt-4">
-                            <i className="fas fa-search"></i>
-                            <input type="text " className="main-text-color"></input>
+                            <div className="search m-auto mt-4">
+                                <i className="fas fa-search"></i>
+                                <input type="text " className="main-text-color"></input>
+                            </div>
+                        </div>
+                        <div className="options d-flex justify-content-center flex-wrap align-items-center">
+                            {data.map((item, index) => {
+                                return (
+                                    <div key={index} className="item-options">
+                                        <div style={{ backgroundImage: `url(${item.img})` }} className="icon"></div>
+                                        <br />
+                                        {item.firstText}
+                                        <br />
+                                        {item.secondText}
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
-                    <div className="options d-flex justify-content-center flex-wrap align-items-center">
-                        {data.map((item, index) => {
-                            return (
-                                <div key={index} className="item-options">
-                                    <div style={{ backgroundImage: `url(${item.img})` }} className="icon"></div>
-                                    <br />
-                                    {item.firstText}
-                                    <br />
-                                    {item.secondText}
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
+                )}
             </>
         );
     }
@@ -163,4 +170,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

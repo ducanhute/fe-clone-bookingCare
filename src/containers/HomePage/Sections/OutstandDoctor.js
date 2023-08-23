@@ -2,8 +2,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions";
-import { LANGUAGES } from "../../../utils";
+import { LANGUAGES, path } from "../../../utils";
 import { FormattedMessage } from "react-intl";
+
+import { withRouter } from "react-router";
 
 import "react-markdown-editor-lite/lib/index.css";
 
@@ -24,6 +26,9 @@ class OutstandDoctor extends Component {
     componentDidMount() {
         this.props.loadTopDoctor();
     }
+    handleViewDetailDoctor = (doctor) => {
+        this.props.history.push(`/detail-doctor/${doctor.id}`);
+    };
 
     render() {
         let { language } = this.props;
@@ -55,7 +60,7 @@ class OutstandDoctor extends Component {
                                         let textVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
                                         let textEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
                                         return (
-                                            <div className="border-item">
+                                            <div className="border-item" onClick={() => this.handleViewDetailDoctor(item)}>
                                                 <div className="wrap-item d-flex align-items-center flex-column">
                                                     <div className="image-slick" style={{ backgroundImage: `url(${imageBase64})` }}></div>
                                                     <h3>{language === LANGUAGES.VI ? textVi : textEn}</h3>
@@ -87,4 +92,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutstandDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutstandDoctor));
