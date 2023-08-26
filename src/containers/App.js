@@ -13,6 +13,7 @@ import Home from "../routes/Home";
 // import Login from '../routes/Login';
 import Login from "./Auth/Login";
 import System from "../routes/System";
+import Doctor from "../routes/Doctor";
 import HomePage from "./HomePage/HomePage";
 import DetailDoctor from "./Patient/Doctors/DetailDoctor";
 // import { CustomToastCloseButton } from "../components/CustomToast";
@@ -48,6 +49,7 @@ class App extends Component {
                                     <Route path={path.HOME} exact component={Home} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
+                                    <Route path="/doctor/" component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
                                 </Switch>

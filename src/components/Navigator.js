@@ -26,7 +26,7 @@ class Menu extends Component {
             <li className={"menu" + (hasSubMenu ? " has-sub-menu" : "") + "" + (active ? " active" : "")}>
                 {hasSubMenu ? (
                     <Fragment>
-                        <span data-toggle="collapse" className={"menu-link collapsed"} onClick={onClick} aria-expanded={"false"}>
+                        <span data-toggle="collapse" className={"menu-link collapsed"} onClick={onClick} style={{ height: "100%" }} aria-expanded={"false"}>
                             <FormattedMessage id={name} />
                             <div className="icon-right">
                                 <i className={"far fa-angle-right"} />

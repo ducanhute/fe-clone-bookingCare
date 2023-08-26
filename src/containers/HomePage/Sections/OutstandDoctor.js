@@ -60,7 +60,7 @@ class OutstandDoctor extends Component {
                                         let textVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
                                         let textEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
                                         return (
-                                            <div className="border-item" onClick={() => this.handleViewDetailDoctor(item)}>
+                                            <div key={index} className="border-item" onClick={() => this.handleViewDetailDoctor(item)}>
                                                 <div className="wrap-item d-flex align-items-center flex-column">
                                                     <div className="image-slick" style={{ backgroundImage: `url(${imageBase64})` }}></div>
                                                     <h3>{language === LANGUAGES.VI ? textVi : textEn}</h3>

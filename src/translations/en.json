@@ -41,6 +41,9 @@
                 "manage-specialty": "Manage specialties",
                 "handBook": "HandBook",
                 "manage-handBook": "Manage hand book"
+            },
+            "doctor": {
+                "manage-schedule": "Manage doctor's schedule"
             }
     },
     "manage-user": {
@@ -63,6 +66,13 @@
     "home-page": {
         "out-stand-doctor": "Outstanding doctor",
         "find": "Search"
+    },
+    "manage-schedule":{
+        "title": "Managing the doctor's medical appointment schedule",
+        "choose-doctor": "Choose your doctor",
+        "choose-date": "Choose your date",
+        "schedule-time": "Schedule health",
+        "save-btn": "Save infomation"
     }
 
 }

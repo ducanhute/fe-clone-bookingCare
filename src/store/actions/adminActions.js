@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
         try {
-            dispatch({ type: actionTypes.FETCH_GENDER_START });
+            // dispatch({ type: actionTypes.FETCH_GENDER_START });
             let res = await getAllCodeService("GENDER");
             if (res && res.errCode === 0) {
                 // console.log("get state", getState);
@@ -243,7 +243,7 @@ export const saveDetailInfoDoctor = (data) => {
                 toast.success("Save information successfully");
                 dispatch(saveDetailInfDoctorSuccess());
             } else {
-                dispatch(fetchAllDoctorFailed());
+                dispatch(saveDetailDoctorFailed());
             }
         } catch (e) {
             console.log(e);
@@ -257,4 +257,30 @@ export const saveDetailInfDoctorSuccess = () => ({
 });
 export const saveDetailDoctorFailed = () => ({
     type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
+});
+
+// fetch all schedules time
+export const fetchAllScheduleTime = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeService("TIME");
+
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllScheduleTimeSuccess(res.data));
+            } else {
+                dispatch(fetchAllScheduleTimeFailed());
+            }
+        } catch (e) {
+            console.log(e);
+            toast.error("Error editing user");
+            dispatch(fetchAllScheduleTimeFailed());
+        }
+    };
+};
+export const fetchAllScheduleTimeSuccess = (data) => ({
+    type: actionTypes.FETCH_SCHEDULE_TIME_SUCCESS,
+    data: data,
+});
+export const fetchAllScheduleTimeFailed = () => ({
+    type: actionTypes.FETCH_SCHEDULE_TIME_FAILED,
 });

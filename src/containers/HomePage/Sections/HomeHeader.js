@@ -11,7 +11,6 @@ class Header extends Component {
         this.props.changeLanguageAppRedux(language);
     };
     handleOnclickLogo = () => {
-        console.log("hihi");
         this.props.history.push("/home");
     };
     render() {
