@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./HomeHeader.scss";
+import * as actions from "../../../store/actions";
 import { icon1Header, icon2Header, icon3Header, icon4Header, icon5Header, icon6Header } from "../../../assets/Image.js";
 import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../../utils";
@@ -165,7 +166,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
+        changeLanguageAppRedux: (language) => dispatch(actions.changeLanguageApp(language)),
     };
 };
 

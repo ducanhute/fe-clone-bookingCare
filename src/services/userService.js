@@ -8,7 +8,6 @@ const getAllUser = (inputId) => {
     return axios.get("/api/get-all-users", { params: { id: inputId } }); // Truyền id dưới dạng param
 };
 const createNewUserService = (data) => {
-    // console.log("check data from services", data)
     return axios.post("/api/create-new-user", data);
 };
 const deleteUserService = (userId) => {
@@ -32,6 +31,12 @@ const saveDoctorDetailService = (data) => {
 const getDetailDoctorById = (id) => {
     return axios.get(`/api/get-detail-doctor-by-id?id=${id}`);
 };
+const saveBulkScheDuleDoctor = (data) => {
+    return axios.post("/api/bulk-create-schedule", data);
+};
+const getScheduleByDate = (doctorId, date) => {
+    return axios.get(`/api/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`);
+};
 export {
     handleLoginApi,
     getAllUser,
@@ -43,4 +48,6 @@ export {
     getAllDoctorService,
     saveDoctorDetailService,
     getDetailDoctorById,
+    saveBulkScheDuleDoctor,
+    getScheduleByDate,
 };

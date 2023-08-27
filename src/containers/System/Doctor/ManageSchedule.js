@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./ManageSchedule.scss";
 import { FormattedMessage } from "react-intl";
-import Select from "react-select";
-import * as actions from "../../../store/actions";
-import { LANGUAGES, dateFormat } from "../../../utils";
-import DatePicker from "../../../components/Input/DatePicker"; // custom component
-import _ from "lodash";
 import moment from "moment";
 import { toast } from "react-toastify";
+import _ from "lodash";
+import Select from "react-select";
 
+import * as actions from "../../../store/actions";
+import { LANGUAGES, dateFormat } from "../../../utils";
+import "./ManageSchedule.scss";
+import DatePicker from "../../../components/Input/DatePicker"; // custom component
+import { saveBulkScheDuleDoctor } from "../../../services/userService";
 class ManageSchedule extends Component {
     constructor(props) {
         super(props);
@@ -82,9 +83,10 @@ class ManageSchedule extends Component {
             });
         }
     };
-    handleSaveSchedule = () => {
+    handleSaveSchedule = async () => {
         let { selectedDoctor, allScheduleTimes, currentDate } = this.state;
         let result = [];
+        let formatDate = new Date(currentDate).getTime();
         if (!currentDate) {
             toast.error("Invalid date");
             return;
@@ -93,7 +95,7 @@ class ManageSchedule extends Component {
             toast.error("Please select a doctor");
             return;
         }
-        let formatDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+
         if (allScheduleTimes && allScheduleTimes.length > 0) {
             let selectedTimes = allScheduleTimes.filter((item) => {
                 return item.isSelected;
@@ -103,14 +105,26 @@ class ManageSchedule extends Component {
                     let selectedInfo = {};
                     selectedInfo.doctorId = selectedDoctor.value;
                     selectedInfo.date = formatDate;
-                    selectedInfo.time = item.keyMap;
+                    selectedInfo.timeType = item.keyMap;
                     result.push(selectedInfo);
                 });
             } else {
                 toast.error("You haven't selected times yet");
             }
         }
-        console.log(result);
+
+        let res = await saveBulkScheDuleDoctor({
+            arrSchedule: result,
+            doctorId: selectedDoctor.value,
+            date: formatDate,
+        });
+        console.log("result  form server ", res);
+        if (res && res.errCode === 0) {
+            toast.success(res.errMessage);
+        }
+        if (res && res.errCode === 2) {
+            toast.error(res.errMessage);
+        }
     };
     render() {
         let { selectedDoctor, allDoctors, allScheduleTimes } = this.state;
