@@ -73,6 +73,14 @@
         "choose-date": "Choose your date",
         "schedule-time": "Schedule health",
         "save-btn": "Save infomation"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Schedule",
+            "announcement": "There are no medical appointments during this time, please choose another time period.",
+            "choose": "Choose",
+            "book-free": "and book an appointment for free"
+        }
     }
 
 }

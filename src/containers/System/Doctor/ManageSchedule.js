@@ -129,6 +129,8 @@ class ManageSchedule extends Component {
     render() {
         let { selectedDoctor, allDoctors, allScheduleTimes } = this.state;
         let { language } = this.props;
+        let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+        console.log("yes", yesterday);
         return (
             <div className="manage-schedule-container">
                 <div className="m-s-title text-uppercase text-center font-weight-bold my-3">
@@ -146,7 +148,7 @@ class ManageSchedule extends Component {
                             <label className="font-weight-bold">
                                 <FormattedMessage id="manage-schedule.choose-date" />
                             </label>
-                            <DatePicker className="form-control" onChange={this.handleOnchangeDatePicker} value={this.state.currentDate} minDate={new Date()} />
+                            <DatePicker className="form-control" onChange={this.handleOnchangeDatePicker} value={this.state.currentDate} minDate={yesterday} />
                         </div>
 
                         <div className="col-12">

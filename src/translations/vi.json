@@ -71,5 +71,13 @@
         "choose-date": "Chọn ngày khám",
         "schedule-time": "Lịch khám",
         "save-btn": "Lưu thông tin"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Lịch khám",
+            "announcement": "Không có lịch khám bệnh trong khoảng thời gian này, vui lòng chọn khoảng thời gian khác.",
+            "choose": "Chọn",
+            "book-free": " và dặt lịch khám miễn phí"
+        }
     }
 }
