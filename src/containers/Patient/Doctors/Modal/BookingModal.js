@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./BookingModal.scss";
 import { Modal } from "reactstrap";
+import ProfileDoctor from "../ProfileDoctor";
+import _ from "lodash";
+import NumberFormat from "react-number-format";
+import { LANGUAGES } from "../../../../utils";
 class BookingModal extends Component {
     constructor(props) {
         super(props);
@@ -9,10 +13,12 @@ class BookingModal extends Component {
     }
     async componentDidMount() {}
     render() {
-        let { isOpenModal, closeBookingModal, dataScheduleTimeModal } = this.props;
+        let { isOpenModal, closeBookingModal, dataScheduleTimeModal, price, language } = this.props;
+        console.log("check", price);
+        let doctorId = dataScheduleTimeModal && !_.isEmpty(dataScheduleTimeModal) ? dataScheduleTimeModal.doctorId : "";
         return (
             <>
-                <Modal isOpen={isOpenModal} centered className="wrap-all-modal">
+                <Modal isOpen={isOpenModal} size="lg" centered className="wrap-all-modal">
                     <div className="modal-booking-container">
                         <div className="booking-modal-header">
                             <span className="left">Thông tin đặt lịch khám bệnh</span>
@@ -21,8 +27,24 @@ class BookingModal extends Component {
                             </span>
                         </div>
                         <div className="booking-modal-body">
-                            <div className="doctor-info"></div>
-                            <div className="price">Giá khám 500 VND</div>
+                            <div className="doctor-info">
+                                <ProfileDoctor doctorId={doctorId} />
+                            </div>
+                            <div className="price mt-2">
+                                Giá khám:&nbsp;
+                                {price && language === LANGUAGES.VI && (
+                                    <NumberFormat
+                                        className="currency"
+                                        displayType="text"
+                                        value={price.valueVi}
+                                        suffix="VND"
+                                        thousandSeparator=","
+                                    ></NumberFormat>
+                                )}
+                                {price && language === LANGUAGES.EN && (
+                                    <NumberFormat className="currency" displayType="text" value={price.valueEn} suffix="$" thousandSeparator=","></NumberFormat>
+                                )}
+                            </div>
                             <div className="row">
                                 <div className="col-6 form-group">
                                     <label>Họ tên</label>

@@ -14,9 +14,7 @@ class DoctorSchedule extends Component {
             extraDoctorInfo: {},
         };
     }
-    componentDidMount() {
-        console.log("componentDidMount", this.props);
-    }
+    componentDidMount() {}
     async componentDidUpdate(prevProps, prevState, savedProps) {
         if (prevProps.doctorId !== this.props.doctorId) {
             let res = await getExtraDoctorInfoById(this.props.doctorId);
@@ -25,10 +23,7 @@ class DoctorSchedule extends Component {
                     extraDoctorInfo: res.data,
                 });
             }
-            console.log("Component didmount", res);
-            console.log("Component didmount", this.state.extraDoctorInfo);
         }
-        // console.log("componentDidUpdate", this.props);
     }
 
     isShowDetailCost = (input) => {
@@ -38,7 +33,6 @@ class DoctorSchedule extends Component {
     };
     render() {
         let { extraDoctorInfo, isShowDetailCost } = this.state;
-        console.log("hhi", extraDoctorInfo);
         let { language } = this.props;
         return (
             <div className="doctor-extra-info-container">

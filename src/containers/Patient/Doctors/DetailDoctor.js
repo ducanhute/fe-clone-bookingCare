@@ -21,12 +21,18 @@ class DetailDoctor extends Component {
         }
     }
     render() {
+        console.log("Check state detailDoctor", this.state);
         let { detailDoctor } = this.state;
         let { language } = this.props;
         let textVi, textEn;
         if (detailDoctor && detailDoctor.positionData) {
             textVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
             textEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
+        }
+        let doctorPrice = {};
+        if (detailDoctor && detailDoctor.Doctor_Info && detailDoctor.Doctor_Info.priceData) {
+            doctorPrice.valueEn = detailDoctor.Doctor_Info.priceData.valueEn;
+            doctorPrice.valueVi = detailDoctor.Doctor_Info.priceData.valueVi;
         }
         return (
             <>
@@ -50,7 +56,7 @@ class DetailDoctor extends Component {
                         </div>
                         <div className="schedule-doctor doctor-detail-container d-flex">
                             <div className="content-right w-50">
-                                <DoctorSchedule doctorId={detailDoctor.id} />
+                                <DoctorSchedule doctorId={detailDoctor.id} price={doctorPrice} />
                             </div>
                             <div className="content-left w-50">
                                 <DoctorExtraInfro doctorId={detailDoctor.id}></DoctorExtraInfro>

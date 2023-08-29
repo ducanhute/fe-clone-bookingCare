@@ -49,7 +49,6 @@ class DoctorSchedule extends Component {
         this.createdArrayDay();
     }
     async componentDidUpdate(prevProps, prevState, savedProps) {
-        // console.log(this.state, prevState);
         if (this.state.allDays !== prevState.allDays || this.props.doctorId !== prevProps.doctorId) {
             let { doctorId } = this.props;
             let { allDays } = this.state;
@@ -73,7 +72,6 @@ class DoctorSchedule extends Component {
                 });
             } else {
             }
-            console.log("res", res);
         }
     };
     handleClickScheduleTime = (item) => {
@@ -89,7 +87,7 @@ class DoctorSchedule extends Component {
     };
     render() {
         let { allDays, allAvailableTimes, isOpenBookingModal, dataScheduleTimeModal } = this.state;
-        let { language } = this.props;
+        let { language, price } = this.props;
         return (
             <>
                 <div className="doctor-schedule-container">
@@ -142,7 +140,12 @@ class DoctorSchedule extends Component {
                         </div>
                     </div>
                 </div>
-                <BookingModal isOpenModal={isOpenBookingModal} closeBookingModal={this.closeBookingModal} dataScheduleTimeModal={dataScheduleTimeModal} />
+                <BookingModal
+                    price={price}
+                    isOpenModal={isOpenBookingModal}
+                    closeBookingModal={this.closeBookingModal}
+                    dataScheduleTimeModal={dataScheduleTimeModal}
+                />
             </>
         );
     }

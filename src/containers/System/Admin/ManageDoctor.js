@@ -54,7 +54,6 @@ class ManageDoctor extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.selectedFieldManageDoctor !== prevProps.selectedFieldManageDoctor || this.props.allDoctors !== prevProps.allDoctors) {
             let allDoctors = this.buildDataInputSelector(this.props.allDoctors, "USER");
-            console.log(this.props.allDoctors);
             if (
                 this.props.selectedFieldManageDoctor.resPrice &&
                 this.props.selectedFieldManageDoctor.resPayment &&
@@ -75,7 +74,6 @@ class ManageDoctor extends Component {
     componentDidMount() {
         this.props.fetchAllDoctor();
         this.props.getAllDoctorManageSelectedField();
-        console.log("hàm did mount");
     }
     async handleSaveContentMarkdown() {
         let { hasOldData } = this.state;
@@ -116,7 +114,6 @@ class ManageDoctor extends Component {
         });
         if (key === "selectedDoctor") {
             let res = await getDetailDoctorById(selectedOption.value);
-            // console.log("data getdoctor by id", res);
             if (res && res.errCode === 0 && res.data && res.data.Markdown && res.data.Markdown.description) {
                 let markdown = res.data.Markdown;
                 let { listPayments, listPrices, listProvinces } = this.state;
@@ -131,7 +128,6 @@ class ManageDoctor extends Component {
                     selectedPrice = "";
 
                 if (res.data.Doctor_Info) {
-                    console.log(res.data.Doctor_Info);
                     clinicAddress = res.data.Doctor_Info.clinicAddress;
                     clinicName = res.data.Doctor_Info.clinicName;
                     note = res.data.Doctor_Info.note;
@@ -178,7 +174,6 @@ class ManageDoctor extends Component {
     };
     handleOnChangeText(e, id) {
         let copyState = { ...this.state };
-        console.log(e, id);
         copyState[id] = e.target.value;
         this.setState({
             ...copyState,
@@ -186,7 +181,6 @@ class ManageDoctor extends Component {
     }
 
     render() {
-        // console.log("check state", this.state);
         const { selectedDoctor, hasOldData, selectedPrice, listPrices, selectedProvince, listProvinces, selectedPayment, listPayments } = this.state;
         return (
             <div className="manage-doctor-container p-4 ">

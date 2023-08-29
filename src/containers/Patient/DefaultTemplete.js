@@ -7,6 +7,7 @@ class DefaultTemplete extends Component {
         this.state = {};
     }
     async componentDidMount() {}
+    async componentDidUpdate(prevProps, prevState, savedProps) {}
     render() {
         return <></>;
     }
