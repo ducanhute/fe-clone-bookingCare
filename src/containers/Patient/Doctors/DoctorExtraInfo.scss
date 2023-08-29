@@ -1,0 +1,30 @@
+.content-left {
+    .doctor-extra-info-container {
+        margin-top: 85px;
+        border-left: 1px solid #eee;
+        padding-left: 20px;
+        .top-content {
+            border-bottom: 1px solid #eee;
+            h3 {
+                font-size: 14px;
+            }
+            .clinic-name {
+                font-size: 13px;
+            }
+            .address {
+                font-size: 13px;
+            }
+        }
+        .intermediate-content {
+            border-bottom: 1px solid #eee;
+            .expand-content {
+                .group-content {
+                    border: 1px solid #ddd;
+                    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08);
+                    background: #eee;
+                    padding: 5px;
+                }
+            }
+        }
+    }
+}
