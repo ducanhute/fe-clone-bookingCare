@@ -161,6 +161,7 @@ class ManageSchedule extends Component {
                                     allScheduleTimes.map((item, index) => {
                                         return (
                                             <button
+                                                key={index}
                                                 onClick={() => this.handleClickBtnTime(item)}
                                                 className={item.isSelected ? "item-btn btn active" : "item-btn btn"}
                                             >

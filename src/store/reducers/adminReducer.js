@@ -7,8 +7,9 @@ const initialState = {
     isLoading: false,
     users: [],
     topDoctor: [],
-    allDoctors: [],
     allScheduleTimes: [],
+    allDoctors: [],
+    selectedFieldManageDoctor: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -92,6 +93,16 @@ const adminReducer = (state = initialState, action) => {
             };
         case actionTypes.FETCH_SCHEDULE_TIME_FAILED:
             state.allScheduleTimes = [];
+            return {
+                ...state,
+            };
+        case actionTypes.GET_ALL_DOCTOR_MANGE_SELECT_FIELD_SUCCESS:
+            state.selectedFieldManageDoctor = action.data;
+            return {
+                ...state,
+            };
+        case actionTypes.GET_ALL_DOCTOR_MANGE_SELECT_FIELD_FAILED:
+            state.listProvinces = [];
             return {
                 ...state,
             };

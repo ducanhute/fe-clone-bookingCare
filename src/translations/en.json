@@ -80,7 +80,28 @@
             "announcement": "There are no medical appointments during this time, please choose another time period.",
             "choose": "Choose",
             "book-free": "and book an appointment for free"
+        },
+        "extra-info": {
+            "address": "Clinic's address",
+            "cost": "Cost",
+            "more-details": "See more detail",
+            "payment-method": "Payment Method",
+            "hide": "Hide table cost"
         }
+    },
+    "admin": {
+        "manage-doctor": {
+            "title": "Create additional information for doctor",
+            "choose-doctor": "Choose your doctor",
+            "choose-province": "Choose doctor's province",
+            "introduction-information": "Introduction information",
+            "price": "Price",
+            "payment": "Payment method",
+            "clinic-name": "Clinic Name",
+            "clinic-address": "Clinic Address",
+            "notes": "Note"
+        }
+        
     }
 
 }

@@ -28,6 +28,14 @@ export const fetchGenderStart = () => {
         }
     };
 };
+// Gender
+export const fetchGenderSuccess = (genderData) => ({
+    type: actionTypes.FETCH_GENDER_SUCCESS,
+    data: genderData,
+});
+export const fetchGenderFailed = () => ({
+    type: actionTypes.FETCH_GENDER_FAILED,
+});
 export const fetchPositionStart = () => {
     return async (dispatch, getState) => {
         try {
@@ -81,14 +89,6 @@ export const createNewUser = (data) => {
         }
     };
 };
-// Gender
-export const fetchGenderSuccess = (genderData) => ({
-    type: actionTypes.FETCH_GENDER_SUCCESS,
-    data: genderData,
-});
-export const fetchGenderFailed = () => ({
-    type: actionTypes.FETCH_GENDER_FAILED,
-});
 // Position
 export const fetchPositionSuccess = (positionData) => ({
     type: actionTypes.FETCH_POSITION_SUCCESS,
@@ -244,6 +244,7 @@ export const saveDetailInfoDoctor = (data) => {
                 dispatch(saveDetailInfDoctorSuccess());
             } else {
                 dispatch(saveDetailDoctorFailed());
+                toast.error(res.errMessage);
             }
         } catch (e) {
             console.log(e);
@@ -284,3 +285,33 @@ export const fetchAllScheduleTimeSuccess = (data) => ({
 export const fetchAllScheduleTimeFailed = () => ({
     type: actionTypes.FETCH_SCHEDULE_TIME_FAILED,
 });
+// GEt all selected fields for manage doctor components
+export const getAllDoctorManageSelectedField = () => {
+    return async (dispatch, getState) => {
+        try {
+            let resPrice = await getAllCodeService("PRICE");
+            let resPayment = await getAllCodeService("PAYMENT");
+            let resProvince = await getAllCodeService("PROVINCE");
+            if (resPrice && resPrice.errCode === 0 && resPayment && resPayment.errCode === 0 && resProvince && resProvince.errCode === 0) {
+                let data = {
+                    resPrice: resPrice,
+                    resPayment: resPayment,
+                    resProvince: resProvince,
+                };
+                dispatch({
+                    type: actionTypes.GET_ALL_DOCTOR_MANGE_SELECT_FIELD_SUCCESS,
+                    data: data,
+                });
+            } else {
+                dispatch({
+                    type: actionTypes.GET_ALL_DOCTOR_MANGE_SELECT_FIELD_FAILED,
+                });
+            }
+        } catch (e) {
+            console.log(e);
+            dispatch({
+                type: actionTypes.GET_ALL_DOCTOR_MANGE_SELECT_FIELD_FAILED,
+            });
+        }
+    };
+};

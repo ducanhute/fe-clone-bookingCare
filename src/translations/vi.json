@@ -78,6 +78,26 @@
             "announcement": "Không có lịch khám bệnh trong khoảng thời gian này, vui lòng chọn khoảng thời gian khác.",
             "choose": "Chọn",
             "book-free": " và dặt lịch khám miễn phí"
+        },
+        "extra-info": {
+            "address": "Địa chỉ phòng khám",
+            "cost": "Giá khám",
+            "more-details": "Xem chi tiết",
+            "payment-method": "Hình thức thanh toán",
+            "hide": "Ẩn bảng giá"
+        }
+    },
+    "admin": {
+        "manage-doctor": {
+            "title": "Tạo thêm thông tin doctor",
+            "choose-doctor": "Chọn bác sĩ",
+            "choose-province": "Chọn tỉnh thành",
+            "introduction-information": "Thông tin giới thiệu",
+            "price": "Giá khám bệnh",
+            "payment": "Phương thức thanh toán",
+            "clinic-name": "Tên phòng khám",
+            "clinic-address": "Địa chỉ phòng khám",
+            "notes": "Note"
         }
     }
 }

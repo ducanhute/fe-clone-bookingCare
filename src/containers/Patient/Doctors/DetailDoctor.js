@@ -4,7 +4,8 @@ import HomeHeader from "../../HomePage/Sections/HomeHeader";
 import "./DetailDoctor.scss";
 import { getDetailDoctorById } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils";
-import DoctorSchedule from "../DoctorSchedule";
+import DoctorSchedule from "../Doctors/DoctorSchedule";
+import DoctorExtraInfro from "../Doctors/DoctorExtraInfro";
 class DetailDoctor extends Component {
     constructor(props) {
         super(props);
@@ -13,12 +14,10 @@ class DetailDoctor extends Component {
         };
     }
     async componentDidMount() {
-        console.log("Parent did mount");
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
             let id = this.props.match.params.id;
             let res = await getDetailDoctorById(id);
             this.setState({ detailDoctor: res.data });
-            console.log("Parent did mount");
         }
     }
     render() {
@@ -53,7 +52,9 @@ class DetailDoctor extends Component {
                             <div className="content-right w-50">
                                 <DoctorSchedule doctorId={detailDoctor.id} />
                             </div>
-                            <div className="content-left w-50">content left</div>
+                            <div className="content-left w-50">
+                                <DoctorExtraInfro doctorId={detailDoctor.id}></DoctorExtraInfro>
+                            </div>
                         </div>
                     </div>
                     <div className="wrap-bg-gray border-bottom py-4">
