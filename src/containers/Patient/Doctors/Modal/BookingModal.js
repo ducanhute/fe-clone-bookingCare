@@ -28,7 +28,7 @@ class BookingModal extends Component {
                         </div>
                         <div className="booking-modal-body">
                             <div className="doctor-info">
-                                <ProfileDoctor doctorId={doctorId} />
+                                <ProfileDoctor isShowDescriptionDoctor={false} doctorId={doctorId} dataScheduleTimeModal={dataScheduleTimeModal} />
                             </div>
                             <div className="price mt-2">
                                 Giá khám:&nbsp;

@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import "./ProfileDoctor.scss";
 import { getProfileDoctorById } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils";
+import _ from "lodash";
+import moment from "moment";
+import "moment/locale/vi";
 class ProfileDoctorInfo extends Component {
     constructor(props) {
         super(props);
@@ -28,10 +31,31 @@ class ProfileDoctorInfo extends Component {
         if (prevProps.doctorId !== this.props.doctorId) {
         }
     }
+    renderTimeBooking = (dataScheduleTimeModal) => {
+        let { language } = this.props;
+        if (dataScheduleTimeModal && !_.isEmpty(dataScheduleTimeModal)) {
+            let time = language === LANGUAGES.VI ? dataScheduleTimeModal.timeTypeData.valueVi : dataScheduleTimeModal.timeTypeData.valueEn;
+            let date =
+                language === LANGUAGES.VI
+                    ? moment.unix(dataScheduleTimeModal.date / 1000).format("ddd - DD/MM/YYYY")
+                    : moment
+                          .unix(dataScheduleTimeModal.date / 1000)
+                          .locale("en")
+                          .format("ddd - MM/DD/YYYY");
+            return (
+                <>
+                    <div>
+                        {time} - {date}
+                    </div>
+                    <div>Miễn phí hồ sơ đăt lịch</div>
+                </>
+            );
+        }
+    };
     render() {
         let { dataProfile } = this.state;
-        let { language } = this.props;
-        console.log("dfadf", dataProfile);
+        let { language, isShowDescriptionDoctor, dataScheduleTimeModal } = this.props;
+
         let textVi, textEn;
         if (dataProfile && dataProfile.positionData) {
             textVi = `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName}`;
@@ -48,7 +72,13 @@ class ProfileDoctorInfo extends Component {
                             <h5 className="font-weight-bold">{language === LANGUAGES.VI ? textVi : textEn}</h5>
                         </div>
                         <div className="field">
-                            {dataProfile && dataProfile.Markdown && dataProfile.Markdown.description && <span>{dataProfile.Markdown.description}</span>}
+                            {isShowDescriptionDoctor ? (
+                                <>
+                                    {dataProfile && dataProfile.Markdown && dataProfile.Markdown.description && <span>{dataProfile.Markdown.description}</span>}
+                                </>
+                            ) : (
+                                <>{this.renderTimeBooking(dataScheduleTimeModal)}</>
+                            )}
                         </div>
                     </div>
                 </div>
