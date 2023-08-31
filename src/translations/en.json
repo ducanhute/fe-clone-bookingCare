@@ -87,6 +87,19 @@
             "more-details": "See more detail",
             "payment-method": "Payment Method",
             "hide": "Hide table cost"
+        },
+        "booking-modal": {
+            "info": "Patient infomation",
+            "fee": "Free medical records",
+            "cost": "Fee",
+            "fullName": "Full Name",
+            "phoneNumber": "Phone Number",
+            "address": "Contact Adress",
+            "reason": "Reason for Health Checkup",
+            "birthday": "Birthday",
+            "gender": "Gender",
+            "btnConfirm":"Confirm",
+            "cancel": "Cancel" 
         }
     },
     "admin": {

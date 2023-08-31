@@ -118,7 +118,7 @@ class ManageSchedule extends Component {
             doctorId: selectedDoctor.value,
             date: formatDate,
         });
-        console.log("result  form server ", res);
+
         if (res && res.errCode === 0) {
             toast.success(res.errMessage);
         }
@@ -130,7 +130,7 @@ class ManageSchedule extends Component {
         let { selectedDoctor, allDoctors, allScheduleTimes } = this.state;
         let { language } = this.props;
         let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-        console.log("yes", yesterday);
+
         return (
             <div className="manage-schedule-container">
                 <div className="m-s-title text-uppercase text-center font-weight-bold my-3">

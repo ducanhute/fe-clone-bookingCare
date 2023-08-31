@@ -6,6 +6,7 @@ import { LANGUAGES } from "../../../utils";
 import NumberFormat from "react-number-format";
 import { getScheduleByDate } from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
+import _ from "lodash";
 class DoctorSchedule extends Component {
     constructor(props) {
         super(props);
@@ -56,7 +57,7 @@ class DoctorSchedule extends Component {
                                 <NumberFormat
                                     className="currency"
                                     displayType="text"
-                                    value={extraDoctorInfo.priceData.valueVi}
+                                    value={extraDoctorInfo.priceData.valueVi && extraDoctorInfo.priceData.valueVi}
                                     suffix="VND"
                                     thousandSeparator=","
                                 ></NumberFormat>
@@ -107,9 +108,9 @@ class DoctorSchedule extends Component {
                                 <div className="payment">
                                     <FormattedMessage id="patient.extra-info.payment-method" />
                                     :&nbsp;
-                                    {extraDoctorInfo && extraDoctorInfo.paymentData && language === LANGUAGES.VI
-                                        ? extraDoctorInfo.paymentData.valueVi
-                                        : extraDoctorInfo.paymentData.valueEn}
+                                    {extraDoctorInfo &&
+                                        extraDoctorInfo.paymentData &&
+                                        (language === LANGUAGES.VI ? extraDoctorInfo.paymentData.valueVi : extraDoctorInfo.paymentData.valueEn)}
                                 </div>
                             </div>
                             <div className="text-high-light cursor-pointer my-2" onClick={() => this.isShowDetailCost(false)}>

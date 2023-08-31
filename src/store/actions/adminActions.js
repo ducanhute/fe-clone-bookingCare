@@ -17,7 +17,6 @@ export const fetchGenderStart = () => {
             // dispatch({ type: actionTypes.FETCH_GENDER_START });
             let res = await getAllCodeService("GENDER");
             if (res && res.errCode === 0) {
-                // console.log("get state", getState);
                 dispatch(fetchGenderSuccess(res.data));
             } else {
                 dispatch(fetchGenderFailed());
@@ -166,7 +165,7 @@ export const editUsersStart = (inputData) => {
     return async (dispatch, getState) => {
         try {
             let res = await editUserService(inputData);
-            console.log("edit usr respnd", res);
+
             if (res && res.errCode === 0) {
                 toast.success("Edit user successfully");
                 dispatch(editUsersSuccess());

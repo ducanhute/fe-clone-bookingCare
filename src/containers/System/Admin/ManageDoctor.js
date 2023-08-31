@@ -84,9 +84,9 @@ class ManageDoctor extends Component {
             doctorId: this.state.selectedDoctor.value,
             action: hasOldData ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE,
             //
-            selectedPrice: this.state.selectedPrice.value,
-            selectedProvince: this.state.selectedProvince.value,
-            selectedPayment: this.state.selectedPayment.value,
+            selectedPrice: this.state.selectedPrice && this.state.selectedPrice.value,
+            selectedProvince: this.state.selectedProvince && this.state.selectedProvince.value,
+            selectedPayment: this.state.selectedPayment && this.state.selectedPayment.value,
             clinicName: this.state.clinicName,
             clinicAddress: this.state.clinicAddress,
             note: this.state.note,
@@ -97,6 +97,15 @@ class ManageDoctor extends Component {
             selectedDoctor: "",
             description: "",
             hasOldData: false,
+            // listPrices: [],
+            // listPayments: [],
+            // listProvinces: [],
+            selectedPrice: "",
+            selectedPayment: "",
+            selectedProvince: "",
+            clinicName: "",
+            clinicAddress: "",
+            note: "",
         });
     }
     handleEditorChange = ({ html, text }) => {
@@ -105,7 +114,7 @@ class ManageDoctor extends Component {
             contentMarkdown: text,
         });
     };
-    handleChangeSelect = async (selectedOption, name, hihi) => {
+    handleChangeSelect = async (selectedOption, name) => {
         let key = name.name;
         let stateCopy = { ...this.state };
         stateCopy[key] = selectedOption;
@@ -114,6 +123,7 @@ class ManageDoctor extends Component {
         });
         if (key === "selectedDoctor") {
             let res = await getDetailDoctorById(selectedOption.value);
+            console.log("respond here", res);
             if (res && res.errCode === 0 && res.data && res.data.Markdown && res.data.Markdown.description) {
                 let markdown = res.data.Markdown;
                 let { listPayments, listPrices, listProvinces } = this.state;
@@ -146,18 +156,19 @@ class ManageDoctor extends Component {
                         return item && item.value === provinceId;
                     });
                 }
+                console.log("select ed price", selectedPrice);
                 this.setState({
                     contentHTML: markdown.contentHTML,
                     contentMarkdown: markdown.contentMarkdown,
                     description: markdown.description,
                     hasOldData: true,
 
-                    clinicAddress: clinicAddress,
-                    clinicName: clinicName,
-                    note: note,
-                    selectedPrice: selectedPrice,
-                    selectedPayment: selectedPayment,
-                    selectedProvince: selectedProvince,
+                    clinicAddress: clinicAddress ? clinicAddress : "",
+                    clinicName: clinicName ? clinicAddress : "",
+                    note: note ? note : "",
+                    selectedPrice: selectedPrice ? selectedPrice : "",
+                    selectedPayment: selectedPayment ? selectedPayment : "",
+                    selectedProvince: selectedProvince ? selectedProvince : "",
                 });
             } else {
                 this.setState({
@@ -168,6 +179,9 @@ class ManageDoctor extends Component {
                     clinicAddress: "",
                     clinicName: "",
                     note: "",
+                    selectedPrice: [],
+                    selectedPayment: [],
+                    selectedProvince: [],
                 });
             }
         }
