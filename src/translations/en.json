@@ -100,6 +100,10 @@
             "gender": "Gender",
             "btnConfirm":"Confirm",
             "cancel": "Cancel" 
+        },
+        "verify": {
+            "success": "You have successfully confirmed the appointment!",
+            "failure": "The appointment does not exist or has already been confirmed!"
         }
     },
     "admin": {

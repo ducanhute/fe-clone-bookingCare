@@ -98,6 +98,10 @@
             "gender": "Giới tính",
             "btnConfirm":"Xác nhận",
             "cancel": "Hủy bỏ" 
+        },
+        "verify": {
+            "success": "Xác nhận lịch hẹn thành công!",
+            "failure": "Lịch hẹn không tồn tại hoặc đã được xác nhận!"
         }
     },
     "admin": {
@@ -113,4 +117,5 @@
             "notes": "Note"
         }
     }
+
 }

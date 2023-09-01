@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { LANGUAGES } from "../../../utils";
+
 class DefaultTemplete extends Component {
     constructor(props) {
         super(props);
@@ -9,7 +9,11 @@ class DefaultTemplete extends Component {
     async componentDidMount() {}
     async componentDidUpdate(prevProps, prevState, savedProps) {}
     render() {
-        return <></>;
+        return (
+            <div>
+                <h1>DefaultTemplete</h1>
+            </div>
+        );
     }
 }
 

@@ -13,6 +13,7 @@ import { LANGUAGES } from "../../../../utils";
 import { FormattedMessage } from "react-intl";
 import { postPatientBookingInfo } from "../../../../services/userService";
 import { toast } from "react-toastify";
+import moment from "moment";
 class BookingModal extends Component {
     constructor(props) {
         super(props);
@@ -56,6 +57,7 @@ class BookingModal extends Component {
                 });
             }
         }
+        console.log("check props", this.props.dataScheduleTimeModal);
         if (this.props.dataScheduleTimeModal !== prevProps.dataScheduleTimeModal) {
             if (this.props.dataScheduleTimeModal && !_.isEmpty(this.props.dataScheduleTimeModal)) {
                 let doctorId = this.props.dataScheduleTimeModal.doctorId;
@@ -90,8 +92,36 @@ class BookingModal extends Component {
             ...stateCopy,
         });
     };
+    buildTimeBooking = (dataTime) => {
+        let { language } = this.props;
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let time = language === LANGUAGES.VI ? dataTime.timeTypeData.valueVi : dataTime.timeTypeData.valueEn;
+            let date =
+                language === LANGUAGES.VI
+                    ? moment.unix(dataTime.date / 1000).format("ddd - DD/MM/YYYY")
+                    : moment
+                          .unix(dataTime.date / 1000)
+                          .locale("en")
+                          .format("ddd - MM/DD/YYYY");
+            return `${time} ${date}`;
+        }
+        return "";
+    };
+    buildDoctorNameBooking = (dataProps) => {
+        let { language } = this.props;
+        if (dataProps && !_.isEmpty(dataProps)) {
+            let doctorName =
+                language === LANGUAGES.VI
+                    ? `${dataProps.doctorData.lastName} ${dataProps.doctorData.firstName}`
+                    : `${dataProps.doctorData.firstName} ${dataProps.doctorData.lastName}`;
+            return doctorName;
+        }
+        return "";
+    };
     handleConfirmBooking = async () => {
         let errorArray = this.validateForm(this.state);
+        let timeString = this.buildTimeBooking(this.props.dataScheduleTimeModal);
+        let doctorName = this.buildDoctorNameBooking(this.props.dataScheduleTimeModal);
         this.setState({
             errorArray: errorArray,
             isSubmit: true,
@@ -108,6 +138,9 @@ class BookingModal extends Component {
                 date: date,
                 gender: this.state.gender.value,
                 timeType: this.state.timeType,
+                language: this.props.language,
+                timeString: timeString,
+                doctorName: doctorName,
             });
             if (res && res.errCode === 0) {
                 toast.success(res.errMessage);
