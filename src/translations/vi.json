@@ -116,7 +116,9 @@
             "payment": "Phương thức thanh toán",
             "clinic-name": "Tên phòng khám",
             "clinic-address": "Địa chỉ phòng khám",
-            "notes": "Note"
+            "notes": "Note",
+            "choose-specialty": "Chọn chuyên khoa",
+            "choose-clinic": "Chọn phòng khám"
         }
     }
 

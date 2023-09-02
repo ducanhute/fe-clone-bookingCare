@@ -8,6 +8,7 @@ import {
     getTopDocTorHomeService,
     getAllDoctorService,
     saveDoctorDetailService,
+    getAllSpecialty,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 // Get gender, position and role
@@ -291,11 +292,13 @@ export const getAllDoctorManageSelectedField = () => {
             let resPrice = await getAllCodeService("PRICE");
             let resPayment = await getAllCodeService("PAYMENT");
             let resProvince = await getAllCodeService("PROVINCE");
+            let resSepecialty = await getAllSpecialty();
             if (resPrice && resPrice.errCode === 0 && resPayment && resPayment.errCode === 0 && resProvince && resProvince.errCode === 0) {
                 let data = {
                     resPrice: resPrice,
                     resPayment: resPayment,
                     resProvince: resProvince,
+                    resSepecialty: resSepecialty,
                 };
                 dispatch({
                     type: actionTypes.GET_ALL_DOCTOR_MANGE_SELECT_FIELD_SUCCESS,

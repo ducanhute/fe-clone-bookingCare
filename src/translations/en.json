@@ -118,7 +118,9 @@
             "payment": "Payment method",
             "clinic-name": "Clinic Name",
             "clinic-address": "Clinic Address",
-            "notes": "Note"
+            "notes": "Note",
+            "choose-specialty": "Choose speciality",
+            "choose-clinic": "Choose clinic"
         }
         
     }
