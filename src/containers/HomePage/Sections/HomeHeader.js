@@ -52,9 +52,9 @@ class Header extends Component {
                 <div className="home-header-container">
                     <div className="home-header-content align-items-center">
                         <div className="left-content h-100 ">
-                            <i className="fa-solid fa-bars"></i>
+                            {/* <i className="fa-solid fa-bars"></i> */}
 
-                            <div onClick={() => this.handleOnclickLogo()} className="header-logo h-75"></div>
+                            <div onClick={() => this.handleOnclickLogo()} className="header-logo h-75 cursor-pointer"></div>
                         </div>
                         <div className="center-content d-flex justify-content-between ">
                             <div className="child-content main-text-color">

@@ -72,7 +72,7 @@ class ManageSpecialty extends Component {
                     <div className="col-12">
                         <MdEditor
                             value={this.state.descriptionMarkdown}
-                            style={{ height: "300px" }}
+                            style={{ height: "600px" }}
                             renderHTML={(text) => mdParser.render(text)}
                             onChange={this.handleEditorChange}
                         />

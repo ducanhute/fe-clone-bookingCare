@@ -65,7 +65,9 @@
     },
     "home-page": {
         "out-stand-doctor": "Outstanding doctor",
-        "find": "Search"
+        "find": "Search",
+        "specialty" :"Common Specialty",
+        "see-more" :"See more"
     },
     "manage-schedule":{
         "title": "Managing the doctor's medical appointment schedule",

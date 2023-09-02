@@ -63,7 +63,9 @@
     },
     "home-page": {
         "out-stand-doctor": "Bác sĩ nổi bật",
-        "find" :"Tìm kiếm"
+        "find" :"Tìm kiếm",
+        "specialty" :"Chuyên khoa phổ biến",
+        "see-more" :"Xem thêm"
     },
     "manage-schedule":{
         "title": "Quản lý kế hoạch khám bệnh bác sĩ",
