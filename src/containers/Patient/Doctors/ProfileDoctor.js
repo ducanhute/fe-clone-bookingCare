@@ -8,17 +8,18 @@ import moment from "moment";
 import "moment/locale/vi";
 import { FormattedMessage } from "react-intl";
 import NumberFormat from "react-number-format";
+import { Link } from "react-router-dom";
 class ProfileDoctorInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
             dataProfile: {},
+            province: "",
         };
     }
     async componentDidMount() {
         let data = await this.getInforDoctor(this.props.doctorId);
-        this.setState({ dataProfile: data });
-        console.log("didmout");
+        this.setState({ dataProfile: data, province: data && data.Doctor_Info && data.Doctor_Info.provinceData });
     }
     getInforDoctor = async (doctorId) => {
         let result = {};
@@ -33,7 +34,8 @@ class ProfileDoctorInfo extends Component {
     async componentDidUpdate(prevProps, prevState, savedProps) {
         if (prevProps.doctorId !== this.props.doctorId) {
             let data = await this.getInforDoctor(this.props.doctorId);
-            this.setState({ dataProfile: data });
+
+            this.setState({ dataProfile: data, province: data && data.Doctor_Info && data.Doctor_Info.provinceData });
         }
     }
     renderTimeBooking = (dataScheduleTimeModal) => {
@@ -58,8 +60,10 @@ class ProfileDoctorInfo extends Component {
         }
     };
     render() {
-        let { dataProfile } = this.state;
-        let { language, isShowDescriptionDoctor, dataScheduleTimeModal, isShowLinkDetail } = this.props;
+        let { dataProfile, province } = this.state;
+        console.log("fdsafas", province);
+
+        let { language, isShowDescriptionDoctor, dataScheduleTimeModal, isShowLinkDetail, doctorId } = this.props;
         let textVi, textEn;
         if (dataProfile && dataProfile.positionData) {
             textVi = `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName}`;
@@ -70,6 +74,11 @@ class ProfileDoctorInfo extends Component {
                 <div className="intro-doctor d-flex align-items-center">
                     <div className="avatar-wrap">
                         {<div className="avatar" style={{ backgroundImage: `url(${dataProfile.image ? dataProfile.image : ""})` }}></div>}
+                        <div className="wrap-icon-location text-center mt-2">
+                            <i className="fa-solid fa-location-dot "></i>
+                            &nbsp;
+                            {language === LANGUAGES.VI ? province.valueVi : province.valueEn}
+                        </div>
                     </div>
                     <div className="detail-info w-75">
                         <div className="name">
@@ -112,7 +121,7 @@ class ProfileDoctorInfo extends Component {
                 </div>
                 {isShowLinkDetail && (
                     <div style={{ fontSize: "16px" }} className="text-high-light mt-2 cursor-pointer p-2">
-                        Xem thêm
+                        <Link to={`/detail-doctor/${doctorId}`}>Xem thêm</Link>
                     </div>
                 )}
             </div>

@@ -1,13 +1,34 @@
 /* eslint-disable */
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import specialtyImmage1 from "../../../assets/images/Speciallty/1.jpg";
 
+import { getAllClinic } from "../../../services/userService";
+
 class OutstandFacility extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            dataClinics: [],
+        };
+    }
+    async componentDidMount() {
+        let res = await getAllClinic();
+        if (res && res.errCode === 0) {
+            this.setState({
+                dataClinics: res.data ? res.data : [],
+            });
+        }
+    }
+    handleViewDetailDoctor = (item) => {
+        this.props.history.push(`/detail-clinic/${item.id}`);
+    };
     render() {
         let Slider = this.props.Slider;
         let settings = this.props.settings;
+        let { dataClinics } = this.state;
         return (
             <div className="section-outstand-facility share-slick-style">
                 <div className="total-content">
@@ -18,30 +39,20 @@ class OutstandFacility extends Component {
                         </div>
                         <div className="slider-content">
                             <Slider {...settings}>
-                                <div className="wrap-item">
-                                    <div className="image-slick"></div>
-                                    <h3>Bệnh viện 1</h3>
-                                </div>
-                                <div className="wrap-item">
-                                    <div className="image-slick"></div>
-                                    <h3>Bệnh viện 2</h3>
-                                </div>
-                                <div className="wrap-item">
-                                    <div className="image-slick"></div>
-                                    <h3>Bệnh viện 3</h3>
-                                </div>
-                                <div className="wrap-item">
-                                    <div className="image-slick"></div>
-                                    <h3>Bệnh viện 4</h3>
-                                </div>
-                                <div className="wrap-item">
-                                    <div className="image-slick"></div>
-                                    <h3>Bệnh viện 5</h3>
-                                </div>
-                                <div className="wrap-item">
-                                    <div className="image-slick"></div>
-                                    <h3>Bệnh viện 6</h3>
-                                </div>
+                                {dataClinics &&
+                                    dataClinics.length > 0 &&
+                                    dataClinics.map((item, index) => {
+                                        return (
+                                            <div key={index} className="wrap-item cursor-pointer">
+                                                <div
+                                                    className="image-slick"
+                                                    onClick={() => this.handleViewDetailDoctor(item)}
+                                                    style={{ backgroundImage: `url(${item.image})` }}
+                                                ></div>
+                                                <h3>{item.name}</h3>
+                                            </div>
+                                        );
+                                    })}
                             </Slider>
                         </div>
                     </div>
@@ -62,4 +73,4 @@ const mapDispatchToProps = (dispatch) => {
     return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutstandFacility);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutstandFacility));
