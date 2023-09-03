@@ -109,7 +109,7 @@ class ManageDoctor extends Component {
             clinicAddress: this.state.clinicAddress,
             note: this.state.note,
             clinicId: this.state.selectedClinic && this.state.selectedClinic.value ? this.state.selectedClinic.value : "",
-            specialtyId: this.state.selectedSpecialty.value,
+            specialtyId: this.state.selectedSpecialty && this.state.selectedSpecialty.value,
         });
         this.setState({
             contentHTML: "",
@@ -123,6 +123,7 @@ class ManageDoctor extends Component {
             selectedPrice: "",
             selectedPayment: "",
             selectedProvince: "",
+            selectedSpecialty: "",
             clinicName: "",
             clinicAddress: "",
             note: "",
@@ -145,16 +146,18 @@ class ManageDoctor extends Component {
             let res = await getDetailDoctorById(selectedOption.value);
             if (res && res.errCode === 0 && res.data && res.data.Markdown && res.data.Markdown.description) {
                 let markdown = res.data.Markdown;
-                let { listPayments, listPrices, listProvinces } = this.state;
+                let { listPayments, listPrices, listProvinces, listSpecialties } = this.state;
                 let clinicAddress = "",
                     clinicName = "",
                     note = "",
                     paymentId = "",
                     priceId = "",
                     provinceId = "",
+                    specialtyId = "",
                     selectedProvince = "",
                     selectedPayment = "",
-                    selectedPrice = "";
+                    selectedPrice = "",
+                    selectedSpecialty = "";
 
                 if (res.data.Doctor_Info) {
                     clinicAddress = res.data.Doctor_Info.clinicAddress;
@@ -164,6 +167,7 @@ class ManageDoctor extends Component {
                     paymentId = res.data.Doctor_Info.paymentId;
                     priceId = res.data.Doctor_Info.priceId;
                     provinceId = res.data.Doctor_Info.provinceId;
+                    specialtyId = res.data.Doctor_Info.specialtyId;
 
                     selectedPrice = listPrices.find((item) => {
                         return item && item.value === priceId;
@@ -173,6 +177,9 @@ class ManageDoctor extends Component {
                     });
                     selectedProvince = listProvinces.find((item) => {
                         return item && item.value === provinceId;
+                    });
+                    selectedSpecialty = listSpecialties.find((item) => {
+                        return item && item.value == specialtyId;
                     });
                 }
                 this.setState({
@@ -187,6 +194,7 @@ class ManageDoctor extends Component {
                     selectedPrice: selectedPrice ? selectedPrice : "",
                     selectedPayment: selectedPayment ? selectedPayment : "",
                     selectedProvince: selectedProvince ? selectedProvince : "",
+                    selectedSpecialty: selectedSpecialty ? selectedSpecialty : "",
                 });
             } else {
                 this.setState({
@@ -200,6 +208,7 @@ class ManageDoctor extends Component {
                     selectedPrice: [],
                     selectedPayment: [],
                     selectedProvince: [],
+                    selectedSpecialty: [],
                     selectedClinic: [],
                 });
             }

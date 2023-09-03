@@ -15,7 +15,16 @@ class DoctorSchedule extends Component {
             extraDoctorInfo: {},
         };
     }
-    componentDidMount() {}
+    async componentDidMount() {
+        if (this.props.doctorId) {
+            let res = await getExtraDoctorInfoById(this.props.doctorId);
+            if (res && res.data) {
+                this.setState({
+                    extraDoctorInfo: res.data,
+                });
+            }
+        }
+    }
     async componentDidUpdate(prevProps, prevState, savedProps) {
         if (prevProps.doctorId !== this.props.doctorId) {
             let res = await getExtraDoctorInfoById(this.props.doctorId);
