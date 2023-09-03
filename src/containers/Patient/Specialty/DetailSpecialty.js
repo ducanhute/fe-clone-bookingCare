@@ -17,6 +17,7 @@ class DetailSpecialty extends Component {
             dataDetailSpecialty: {},
             listProvince: [],
             selectedProvince: "",
+            isShowMoreDescription: false,
         };
     }
     async componentDidMount() {
@@ -28,70 +29,119 @@ class DetailSpecialty extends Component {
                 let arrDoctorId = [];
                 if (res.data && !_.isEmpty(res.data)) {
                     let arr = res.data.doctorSpecialty;
-
                     if (arr && arr.length > 0) {
                         arr.map((item) => {
-                            arrDoctorId.push(item.doctorId);
+                            arrDoctorId.push(+item.doctorId);
                         });
                     }
                 }
-                this.setState({ dataDetailSpecialty: res.data, arrDoctorId: arrDoctorId, listProvince: resProvince.data });
+                if (resProvince && resProvince.data.length > 0) {
+                    resProvince.data.unshift({
+                        keyMap: "ALL",
+                        type: "PROVINCE",
+                        valueEn: "All location",
+                        valueVi: "Toàn quốc",
+                    });
+                }
+                this.setState({ dataDetailSpecialty: res.data, arrDoctorId: arrDoctorId, listProvince: resProvince.data ? resProvince.data : [] });
             }
         }
     }
     async componentDidUpdate(prevProps, prevState, savedProps) {}
-    handleOnchangeSelect = (e) => {
-        this.setState({
-            selectedProvince: e.target.value,
-        });
+    handleOnchangeSelect = async (e) => {
+        if (this.props.match && this.props.match.params && this.props.match.params.id) {
+            let id = this.props.match.params.id;
+            let location = e.target.value;
+
+            let res = await getAllSpecialtyById({ id: id, location: location });
+
+            console.log("onchange res", res);
+            if (res && res.errCode === 0) {
+                let data = res.data;
+                let arrDoctorId = [];
+                if (data && !_.isEmpty(res.data)) {
+                    let arr = data.doctorSpecialty;
+                    console.log("check arrr", arr);
+                    if (arr && arr.length > 0) {
+                        arr.map((item) => {
+                            arrDoctorId.push(+item.doctorId);
+                        });
+                    }
+                }
+                console.log("arr doctor Id", arrDoctorId);
+                this.setState({
+                    dataDetailSpecialty: res.data,
+                    arrDoctorId: arrDoctorId,
+                    selectedProvince: location,
+                });
+            }
+        }
     };
+    handleToggleShowContent() {
+        this.setState({
+            isShowMoreDescription: !this.state.isShowMoreDescription,
+        });
+    }
     render() {
-        let { arrDoctorId, dataDetailSpecialty, listProvince } = this.state;
+        let { arrDoctorId, dataDetailSpecialty, listProvince, isShowMoreDescription } = this.state;
         let { language } = this.props;
+        console.log("render", arrDoctorId);
         return (
             <div className="detail-specialty-container">
                 <HomeHeader />
 
                 <div className="description-specialty mt-5 pt-5">
                     {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) && (
-                        <div dangerouslySetInnerHTML={{ __html: `${dataDetailSpecialty.descriptionHTML}` }}></div>
+                        <div
+                            className={isShowMoreDescription ? "description-specialty-content show-more" : "description-specialty-content"}
+                            dangerouslySetInnerHTML={{ __html: `${dataDetailSpecialty.descriptionHTML}` }}
+                        ></div>
                     )}
+                    <div
+                        className="show-more-specialty-info text-high-light"
+                        onClick={() => {
+                            this.handleToggleShowContent();
+                        }}
+                    >
+                        {isShowMoreDescription ? "Ẩn bớt" : "Xem thêm"}
+                    </div>
                 </div>
                 <div className="wrap-content-secialty">
-                    <div className="seach-sp-btn">
-                        <select onChange={(e) => this.handleOnchangeSelect(e)} value={this.state.selectedProvince}>
+                    <div className="filter-specialty my-2">
+                        <select className="minimal" onChange={(e) => this.handleOnchangeSelect(e)} value={this.state.selectedProvince}>
                             {listProvince &&
                                 listProvince.length > 0 &&
                                 listProvince.map((item, index) => {
                                     return (
-                                        <option key={index} value={item.keyMap}>
+                                        <option key={index} value={item.keyMap} className="cursor-pointer">
                                             {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                         </option>
                                     );
                                 })}
                         </select>
                     </div>
-                    {arrDoctorId.map((item, index) => {
-                        return (
-                            <div key={index} className="part-package">
-                                <div className="each-doctor d-flex" key={index}>
-                                    <div className="dt-content-left w-50">
-                                        <h1>
-                                            <ProfileDoctor isShowDescriptionDoctor={true} doctorId={item} />
-                                        </h1>
-                                    </div>
-                                    <div className="dt-content-right w-50">
-                                        <div className="doctor-extra">
-                                            <DoctorExtraInfro doctorId={item} />
+                    {arrDoctorId.length > 0 &&
+                        arrDoctorId.map((item, index) => {
+                            return (
+                                <div key={index} className="part-package">
+                                    <div className="each-doctor d-flex">
+                                        <div className="dt-content-left w-50">
+                                            <h1>
+                                                <ProfileDoctor isShowDescriptionDoctor={true} doctorId={item} isShowLinkDetail={true} />
+                                            </h1>
                                         </div>
-                                        <div className="doctorSchedule">
-                                            <DoctorSchedule doctorId={item} />;
+                                        <div className="dt-content-right w-50">
+                                            <div className="doctor-extra">
+                                                <DoctorExtraInfro doctorId={item} />
+                                            </div>
+                                            <div className="doctorSchedule">
+                                                <DoctorSchedule doctorId={item} />;
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
                 </div>
             </div>
         );

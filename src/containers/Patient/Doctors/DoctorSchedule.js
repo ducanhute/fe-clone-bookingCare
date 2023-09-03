@@ -87,7 +87,7 @@ class DoctorSchedule extends Component {
     };
     render() {
         let { allDays, allAvailableTimes, isOpenBookingModal, dataScheduleTimeModal } = this.state;
-        let { language, price } = this.props;
+        let { language } = this.props;
 
         return (
             <>
@@ -141,12 +141,7 @@ class DoctorSchedule extends Component {
                         </div>
                     </div>
                 </div>
-                <BookingModal
-                    price={price}
-                    isOpenModal={isOpenBookingModal}
-                    closeBookingModal={this.closeBookingModal}
-                    dataScheduleTimeModal={dataScheduleTimeModal}
-                />
+                <BookingModal isOpenModal={isOpenBookingModal} closeBookingModal={this.closeBookingModal} dataScheduleTimeModal={dataScheduleTimeModal} />
             </>
         );
     }

@@ -57,7 +57,6 @@ class BookingModal extends Component {
                 });
             }
         }
-        console.log("check props", this.props.dataScheduleTimeModal);
         if (this.props.dataScheduleTimeModal !== prevProps.dataScheduleTimeModal) {
             if (this.props.dataScheduleTimeModal && !_.isEmpty(this.props.dataScheduleTimeModal)) {
                 let doctorId = this.props.dataScheduleTimeModal.doctorId;
@@ -184,7 +183,7 @@ class BookingModal extends Component {
 
     render() {
         let { genders, gender, errorArray, isSubmit } = this.state;
-        let { isOpenModal, closeBookingModal, dataScheduleTimeModal, price, language } = this.props;
+        let { isOpenModal, closeBookingModal, dataScheduleTimeModal, language } = this.props;
         let doctorId = dataScheduleTimeModal && !_.isEmpty(dataScheduleTimeModal) ? dataScheduleTimeModal.doctorId : "";
         return (
             <>
@@ -202,22 +201,7 @@ class BookingModal extends Component {
                             <div className="doctor-info">
                                 <ProfileDoctor isShowDescriptionDoctor={false} doctorId={doctorId} dataScheduleTimeModal={dataScheduleTimeModal} />
                             </div>
-                            <div className="price mt-2">
-                                <FormattedMessage id="patient.booking-modal.fee" />
-                                :&nbsp;
-                                {price && language === LANGUAGES.VI && (
-                                    <NumberFormat
-                                        className="currency"
-                                        displayType="text"
-                                        value={price.valueVi}
-                                        suffix="VND"
-                                        thousandSeparator=","
-                                    ></NumberFormat>
-                                )}
-                                {price && language === LANGUAGES.EN && (
-                                    <NumberFormat className="currency" displayType="text" value={price.valueEn} suffix="$" thousandSeparator=","></NumberFormat>
-                                )}
-                            </div>
+
                             <div className="row">
                                 <div className="col-6 form-group">
                                     <label>

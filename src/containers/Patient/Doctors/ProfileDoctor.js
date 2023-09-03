@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import "./ProfileDoctor.scss";
 import { getProfileDoctorById } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils";
-import _ from "lodash";
+import _, { size } from "lodash";
 import moment from "moment";
 import "moment/locale/vi";
+import { FormattedMessage } from "react-intl";
+import NumberFormat from "react-number-format";
 class ProfileDoctorInfo extends Component {
     constructor(props) {
         super(props);
@@ -16,6 +18,7 @@ class ProfileDoctorInfo extends Component {
     async componentDidMount() {
         let data = await this.getInforDoctor(this.props.doctorId);
         this.setState({ dataProfile: data });
+        console.log("didmout");
     }
     getInforDoctor = async (doctorId) => {
         let result = {};
@@ -29,6 +32,8 @@ class ProfileDoctorInfo extends Component {
     };
     async componentDidUpdate(prevProps, prevState, savedProps) {
         if (prevProps.doctorId !== this.props.doctorId) {
+            let data = await this.getInforDoctor(this.props.doctorId);
+            this.setState({ dataProfile: data });
         }
     }
     renderTimeBooking = (dataScheduleTimeModal) => {
@@ -54,8 +59,7 @@ class ProfileDoctorInfo extends Component {
     };
     render() {
         let { dataProfile } = this.state;
-        let { language, isShowDescriptionDoctor, dataScheduleTimeModal } = this.props;
-
+        let { language, isShowDescriptionDoctor, dataScheduleTimeModal, isShowLinkDetail } = this.props;
         let textVi, textEn;
         if (dataProfile && dataProfile.positionData) {
             textVi = `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName}`;
@@ -80,8 +84,37 @@ class ProfileDoctorInfo extends Component {
                                 <>{this.renderTimeBooking(dataScheduleTimeModal)}</>
                             )}
                         </div>
+                        {!isShowDescriptionDoctor && (
+                            <div className="price font-italic">
+                                <FormattedMessage id="patient.booking-modal.cost" />
+                                :&nbsp;
+                                {dataProfile && dataProfile.Doctor_Info && dataProfile.Doctor_Info.priceData && language === LANGUAGES.VI && (
+                                    <NumberFormat
+                                        className="currency"
+                                        displayType="text"
+                                        value={dataProfile.Doctor_Info.priceData.valueVi}
+                                        suffix="VND"
+                                        thousandSeparator=","
+                                    ></NumberFormat>
+                                )}
+                                {dataProfile && dataProfile.Doctor_Info && dataProfile.Doctor_Info.priceData && language === LANGUAGES.EN && (
+                                    <NumberFormat
+                                        className="currency"
+                                        displayType="text"
+                                        value={dataProfile.Doctor_Info.priceData.valueEn}
+                                        suffix="$"
+                                        thousandSeparator=","
+                                    ></NumberFormat>
+                                )}
+                            </div>
+                        )}
                     </div>
                 </div>
+                {isShowLinkDetail && (
+                    <div style={{ fontSize: "16px" }} className="text-high-light mt-2 cursor-pointer p-2">
+                        Xem thêm
+                    </div>
+                )}
             </div>
         );
     }
