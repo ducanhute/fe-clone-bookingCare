@@ -46,7 +46,7 @@ class DetailClinic extends Component {
     }
     render() {
         let { arrDoctorId, dataDetailClinic, isShowMoreDescription } = this.state;
-        console.log("check state", this.state);
+
         let { language } = this.props;
 
         return (

@@ -11,7 +11,6 @@ class VerifyEmail extends Component {
         };
     }
     async componentDidMount() {
-        console.log("ditmout verify email");
         if (this.props.location && this.props.location.search) {
             let urlParams = new URLSearchParams(this.props.location.search);
             let token = urlParams.get("token");

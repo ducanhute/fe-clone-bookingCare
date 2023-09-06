@@ -61,7 +61,6 @@ class ProfileDoctorInfo extends Component {
     };
     render() {
         let { dataProfile, province } = this.state;
-        console.log("fdsafas", province);
 
         let { language, isShowDescriptionDoctor, dataScheduleTimeModal, isShowLinkDetail, doctorId } = this.props;
         let textVi, textEn;
