@@ -69,7 +69,8 @@ class DetailClinic extends Component {
                             this.handleToggleShowContent();
                         }}
                     >
-                        {isShowMoreDescription ? "Ẩn bớt" : "Xem thêm"}
+                        {language === LANGUAGES.VI && (isShowMoreDescription ? "Ẩn bớt" : "Xem thêm")}
+                        {language === LANGUAGES.EN && (isShowMoreDescription ? "Hide less" : "See more...")}
                     </div>
                 </div>
                 <div className="wrap-content-secialty">

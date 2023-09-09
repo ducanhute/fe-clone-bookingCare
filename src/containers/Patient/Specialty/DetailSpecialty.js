@@ -93,7 +93,9 @@ class DetailSpecialty extends Component {
                     {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) && (
                         <div
                             className={isShowMoreDescription ? "description-specialty-content show-more" : "description-specialty-content"}
-                            dangerouslySetInnerHTML={{ __html: `${dataDetailSpecialty.descriptionHTML}` }}
+                            dangerouslySetInnerHTML={{
+                                __html: `${language === LANGUAGES.VI ? dataDetailSpecialty.descriptionHTMLVi : dataDetailSpecialty.descriptionHTMLEn}`,
+                            }}
                         ></div>
                     )}
                     <div
@@ -102,7 +104,8 @@ class DetailSpecialty extends Component {
                             this.handleToggleShowContent();
                         }}
                     >
-                        {isShowMoreDescription ? "Ẩn bớt" : "Xem thêm"}
+                        {language === LANGUAGES.VI && (isShowMoreDescription ? "Ẩn bớt" : "Xem thêm")}
+                        {language === LANGUAGES.EN && (isShowMoreDescription ? "Hide less" : "See more...")}
                     </div>
                 </div>
                 <div className="wrap-content-secialty">

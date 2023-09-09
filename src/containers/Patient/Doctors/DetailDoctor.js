@@ -20,6 +20,13 @@ class DetailDoctor extends Component {
             this.setState({ detailDoctor: res.data });
         }
     }
+    removeAccents(str) {
+        return str
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/đ/g, "d")
+            .replace(/Đ/g, "D");
+    }
     render() {
         let { detailDoctor } = this.state;
         let { language } = this.props;
@@ -27,6 +34,7 @@ class DetailDoctor extends Component {
         if (detailDoctor && detailDoctor.positionData) {
             textVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
             textEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
+            textEn = this.removeAccents(textEn);
         }
         let doctorPrice = {};
         if (detailDoctor && detailDoctor.Doctor_Info && detailDoctor.Doctor_Info.priceData) {
@@ -42,13 +50,16 @@ class DetailDoctor extends Component {
                             <div className="avatar-wrap">
                                 {<div className="avatar" style={{ backgroundImage: `url(${detailDoctor.image ? detailDoctor.image : ""})` }}></div>}
                             </div>
-                            <div className="detail-info w-75">
+                            <div className="detail-info w-50">
                                 <div className="name ">
                                     <h3 className="font-weight-bold">{language === LANGUAGES.VI ? textVi : textEn}</h3>
                                 </div>
                                 <div className="field">
-                                    {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.description && (
+                                    {language === LANGUAGES.VI && detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.description && (
                                         <span>{detailDoctor.Markdown.description}</span>
+                                    )}
+                                    {language === LANGUAGES.EN && detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.descriptionEn && (
+                                        <span>{detailDoctor.Markdown.descriptionEn}</span>
                                     )}
                                 </div>
                             </div>
@@ -64,8 +75,12 @@ class DetailDoctor extends Component {
                     </div>
                     <div className="wrap-bg-gray border-bottom py-4">
                         <div className="doctor-detail-container detail-info-doctor">
-                            {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && (
-                                <div dangerouslySetInnerHTML={{ __html: `${detailDoctor.Markdown.contentHTML}` }}></div>
+                            {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && detailDoctor.Markdown.contentHTMLEn && (
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: `${language === LANGUAGES.VI ? detailDoctor.Markdown.contentHTML : detailDoctor.Markdown.contentHTMLEn}`,
+                                    }}
+                                ></div>
                             )}
                         </div>
                         <div className="comment-doctor"></div>

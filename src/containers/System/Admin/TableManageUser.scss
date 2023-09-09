@@ -1,7 +1,12 @@
 #TableManageUser {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    display: block;
     width: 100%;
+    margin: 0 auto;
+    height: 500px;
+    overflow-y: scroll;
+    width: fit-content;
 }
 
 #TableManageUser td,

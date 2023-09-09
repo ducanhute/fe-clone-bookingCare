@@ -54,11 +54,18 @@ class ProfileDoctorInfo extends Component {
                     <div>
                         {time} - {date}
                     </div>
-                    <div>Miễn phí hồ sơ đăt lịch</div>
+                    <div>{language === LANGUAGES.VI ? "Miễn phí hồ sơ đăt lịch" : "Free appointment documents"}</div>
                 </>
             );
         }
     };
+    removeAccents(str) {
+        return str
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/đ/g, "d")
+            .replace(/Đ/g, "D");
+    }
     render() {
         let { dataProfile, province } = this.state;
 
@@ -67,6 +74,7 @@ class ProfileDoctorInfo extends Component {
         if (dataProfile && dataProfile.positionData) {
             textVi = `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName}`;
             textEn = `${dataProfile.positionData.valueEn}, ${dataProfile.firstName} ${dataProfile.lastName}`;
+            textEn = this.removeAccents(textEn);
         }
         return (
             <div className="wrap-profile-table">
@@ -86,7 +94,12 @@ class ProfileDoctorInfo extends Component {
                         <div className="field">
                             {isShowDescriptionDoctor ? (
                                 <>
-                                    {dataProfile && dataProfile.Markdown && dataProfile.Markdown.description && <span>{dataProfile.Markdown.description}</span>}
+                                    {language === LANGUAGES.VI && dataProfile && dataProfile.Markdown && dataProfile.Markdown.description && (
+                                        <span>{dataProfile.Markdown.description}</span>
+                                    )}
+                                    {language === LANGUAGES.EN && dataProfile && dataProfile.Markdown && dataProfile.Markdown.descriptionEn && (
+                                        <span>{dataProfile.Markdown.descriptionEn}</span>
+                                    )}
                                 </>
                             ) : (
                                 <>{this.renderTimeBooking(dataScheduleTimeModal)}</>
@@ -120,7 +133,7 @@ class ProfileDoctorInfo extends Component {
                 </div>
                 {isShowLinkDetail && (
                     <div style={{ fontSize: "16px" }} className="text-high-light mt-2 cursor-pointer p-2">
-                        <Link to={`/detail-doctor/${doctorId}`}>Xem thêm</Link>
+                        <Link to={`/detail-doctor/${doctorId}`}>{language === LANGUAGES.VI ? "Xem thêm" : "See more..."}</Link>
                     </div>
                 )}
             </div>

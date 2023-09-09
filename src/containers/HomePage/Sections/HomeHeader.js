@@ -3,10 +3,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./HomeHeader.scss";
 import * as actions from "../../../store/actions";
-import { icon1Header, icon2Header, icon3Header, icon4Header, icon5Header, icon6Header } from "../../../assets/Image.js";
+import { iconHeader } from "../../../assets/Image";
 import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../../utils";
 import { withRouter } from "react-router";
+
 class Header extends Component {
     changeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language);
@@ -14,95 +15,106 @@ class Header extends Component {
     handleOnclickLogo = () => {
         this.props.history.push("/home");
     };
+    goToViolation = (id) => {
+        let element = document.getElementById(id);
+        element.scrollIntoView();
+        element.scrollIntoView(false);
+        element.scrollIntoView({ block: "nearest" });
+        element.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+    };
     render() {
         const data = [
             {
-                img: icon1Header,
+                img: iconHeader.icon1Header,
                 firstText: <FormattedMessage id="banner.option1FirstText" />,
                 secondText: <FormattedMessage id="banner.option1SecondText" />,
             },
             {
-                img: icon2Header,
+                img: iconHeader.icon2Header,
                 firstText: <FormattedMessage id="banner.option2FirstText" />,
                 secondText: <FormattedMessage id="banner.option2SecondText" />,
             },
             {
-                img: icon3Header,
+                img: iconHeader.icon3Header,
                 firstText: <FormattedMessage id="banner.option3FirstText" />,
                 secondText: <FormattedMessage id="banner.option3SecondText" />,
             },
             {
-                img: icon4Header,
+                img: iconHeader.icon4Header,
                 firstText: <FormattedMessage id="banner.option4FirstText" />,
                 secondText: <FormattedMessage id="banner.option4SecondText" />,
             },
             {
-                img: icon5Header,
+                img: iconHeader.icon5Header,
                 firstText: <FormattedMessage id="banner.option5FirstText" />,
                 secondText: <FormattedMessage id="banner.option5SecondText" />,
             },
             {
-                img: icon6Header,
+                img: iconHeader.icon6Header,
                 firstText: <FormattedMessage id="banner.option6FirstText" />,
                 secondText: <FormattedMessage id="banner.option6SecondText" />,
             },
         ];
+
         return (
             <>
                 <div className="home-header-container">
                     <div className="home-header-content align-items-center">
                         <div className="left-content h-100 ">
-                            {/* <i className="fa-solid fa-bars"></i> */}
-
-                            <div onClick={() => this.handleOnclickLogo()} className="header-logo h-75 cursor-pointer"></div>
+                            <div
+                                onClick={() => {
+                                    this.handleOnclickLogo();
+                                }}
+                                className="header-logo h-75 cursor-pointer"
+                            ></div>
                         </div>
                         <div className="center-content d-flex justify-content-between ">
                             <div className="child-content main-text-color">
-                                <h6 className="mb-0">
-                                    <b>
+                                <h5 className="mb-0" onClick={() => this.goToViolation("specialty")}>
+                                    <a className=" font-weight-bold">
                                         <FormattedMessage id="home-header.speciality" />
-                                    </b>
-                                </h6>
-                                <p className="mb-0 text-12">
+                                    </a>
+                                </h5>
+                                <p className="mb-0 text-12 sub-text-header">
                                     {" "}
                                     <FormattedMessage id="home-header.search-doctor" />
                                 </p>
                             </div>
                             <div className="child-content main-text-color">
-                                <h6 className="mb-0">
-                                    <b>
+                                <h5 className="mb-0" onClick={() => this.goToViolation("facility")}>
+                                    <a className=" font-weight-bold">
                                         <FormattedMessage id="home-header.healthcare-facility" />
-                                    </b>
-                                </h6>
-                                <p className="mb-0 text-12">
+                                    </a>
+                                </h5>
+                                <p className="mb-0 text-12 sub-text-header">
                                     {" "}
                                     <FormattedMessage id="home-header.select-hospital" />
                                 </p>
                             </div>
                             <div className="child-content main-text-color">
-                                <h6 className="mb-0">
-                                    <b>
+                                <h5 className="mb-0" onClick={() => this.goToViolation("doctor-section")}>
+                                    <a className=" font-weight-bold">
                                         <FormattedMessage id="home-header.doctor" />
-                                    </b>
-                                </h6>
-                                <p className="mb-0 text-12">
+                                    </a>
+                                </h5>
+                                <p className="mb-0 text-12 sub-text-header">
                                     <FormattedMessage id="home-header.select-doctor" />
                                 </p>
                             </div>
                             <div className="child-content main-text-color">
-                                <h6 className="mb-0">
-                                    <b>
+                                <h5 className="mb-0 ">
+                                    <a className=" font-weight-bold">
                                         <FormattedMessage id="home-header.fee" />
-                                    </b>
-                                </h6>
+                                    </a>
+                                </h5>
 
-                                <p className="mb-0 text-12">
+                                <p className="mb-0 text-12 sub-text-header">
                                     <FormattedMessage id="home-header.general-check" />
                                 </p>
                             </div>
                         </div>
                         <div className="right-content d-flex align-items-center justify-content-end px-4">
-                            <div className="support d-flex align-items-center">
+                            <div className="support d-flex align-items-center cursor-pointer" onClick={() => this.goToViolation("footer-section")}>
                                 <i className="fa-solid fa-question mx-1"></i>
                                 <span className="text-14 fw-bold">
                                     <FormattedMessage id="home-header.support" />
@@ -145,6 +157,7 @@ class Header extends Component {
                                         <br />
                                         {item.firstText}
                                         <br />
+
                                         {item.secondText}
                                     </div>
                                 );

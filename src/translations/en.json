@@ -107,6 +107,26 @@
         "verify": {
             "success": "You have successfully confirmed the appointment!",
             "failure": "The appointment does not exist or has already been confirmed!"
+        },
+        "videoAbout": {
+            "title":"What the media say about BookingCare",
+            "sub-title": "Economical, smart and effective solution",
+            "content": "Economical, smart and effective solution BookingCare's solution is to build a technology platform connecting a network of good doctors and reputable medical facilities with clearly verified and updated information. Applying technology helps patients easily choose the right specialist for their problem and schedule an examination."
+        },
+        "footer": {
+            "name":"BookingCare Technology Joint Stock Company",
+            "address": "Lot B4/D21, Cau Giay New Urban Area, Dich Vong Hau Ward, Cau Giay District, Hanoi City, Vietnam",
+            "check": "Business registration number: 0106790291. Hanoi Department of Planning and Investment issued on March 16, 2015",
+            "office": "Office in Ho Chi Minh City",
+            "office-address": "No. 01, Ho Ba Kien, Ward 15, District 10",
+            "support":"Customer support",
+            "support-address": "support@bookingcare.vn (7am - 6pm)",
+            "hotline":"Hotline",
+            "hotline-number":"024-7301-2468",
+            "hotline-time":"7am-6pm"
+        },
+        "facility":{
+            "outstand-facility": "Outstanding medical facility"
         }
     },
     "admin": {

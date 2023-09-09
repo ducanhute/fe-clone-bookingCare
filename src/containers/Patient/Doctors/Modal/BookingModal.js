@@ -145,7 +145,7 @@ class BookingModal extends Component {
             if (res && res.errCode === 0) {
                 toast.success(res.errMessage);
             } else {
-                toast.success("My booking Appointment has Failed!");
+                toast.error("My booking Appointment has Failed!");
             }
         }
     };

@@ -50,10 +50,10 @@ class TableManageUser extends Component {
                                     <td>{item.lastName}</td>
                                     <td>{item.address}</td>
                                     <td className="action-col">
-                                        <button className="edit-btn" onClick={() => this.handleEditUser(item)}>
+                                        <button className="edit-btn mx-2" onClick={() => this.handleEditUser(item)}>
                                             <i className=" fas fa-pencil-alt"></i> Edit
                                         </button>
-                                        <button className="delete-btn" onClick={() => this.handleDeleteUser(item.id)}>
+                                        <button className="delete-btn mx-2" onClick={() => this.handleDeleteUser(item.id)}>
                                             <i className=" fas fa-trash"></i> Delete
                                         </button>
                                     </td>

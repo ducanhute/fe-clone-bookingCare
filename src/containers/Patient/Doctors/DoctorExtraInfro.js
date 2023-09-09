@@ -50,8 +50,21 @@ class DoctorSchedule extends Component {
                     <h3 className="font-weight-bold text-uppercase ">
                         <FormattedMessage id="patient.extra-info.address" />
                     </h3>
-                    <div className="clinic-name font-weight-bold">{extraDoctorInfo && extraDoctorInfo.clinicName ? extraDoctorInfo.clinicName : ""}</div>
-                    <div className="address mb-2">{extraDoctorInfo && extraDoctorInfo.clinicAddress ? extraDoctorInfo.clinicAddress : ""}</div>
+                    {language === LANGUAGES.VI && (
+                        <div className="clinic-name font-weight-bold">{extraDoctorInfo && extraDoctorInfo.clinicName ? extraDoctorInfo.clinicName : ""}</div>
+                    )}
+                    {language === LANGUAGES.EN && (
+                        <div className="clinic-name font-weight-bold">
+                            {extraDoctorInfo && extraDoctorInfo.clinicNameEn ? extraDoctorInfo.clinicNameEn : ""}
+                        </div>
+                    )}
+
+                    {language === LANGUAGES.VI && (
+                        <div className="address mb-2">{extraDoctorInfo && extraDoctorInfo.clinicAddress ? extraDoctorInfo.clinicAddress : ""}</div>
+                    )}
+                    {language === LANGUAGES.EN && (
+                        <div className="address mb-2">{extraDoctorInfo && extraDoctorInfo.clinicAddressEn ? extraDoctorInfo.clinicAddressEn : ""}</div>
+                    )}
                 </div>
 
                 <div className="intermediate-content">
@@ -113,7 +126,10 @@ class DoctorSchedule extends Component {
                                         )}
                                     </span>
                                 </div>
-                                <div className="note">{extraDoctorInfo && extraDoctorInfo.note ? extraDoctorInfo.note : ""}</div>
+                                <div className="note">
+                                    {language === LANGUAGES.VI && extraDoctorInfo && extraDoctorInfo.note ? extraDoctorInfo.note : ""}
+                                    {language === LANGUAGES.EN && extraDoctorInfo && extraDoctorInfo.noteEn ? extraDoctorInfo.noteEn : ""}
+                                </div>
                                 <div className="payment">
                                     <FormattedMessage id="patient.extra-info.payment-method" />
                                     :&nbsp;

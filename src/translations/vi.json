@@ -105,6 +105,26 @@
         "verify": {
             "success": "Xác nhận lịch hẹn thành công!",
             "failure": "Lịch hẹn không tồn tại hoặc đã được xác nhận!"
+        },
+        "videoAbout": {
+            "title":"Truyền thông nói gì về BookingCare",
+            "sub-title": "Giải pháp tiết kiệm, thông minh và hiệu quả",
+            "content": "Giải pháp tiết kiệm, thông minh và hiệu quả Giải pháp của BookingCare là xây dựng nền tảng công nghệ kết nối mạng lưới bác sĩ giỏi và các cơ sở y tế uy tín với thông tin được xác thực rõ ràng, cập nhật. Ứng dụng công nghệ giúp người bệnh dễ dàng lựa chọn đúng bác sĩ chuyên khoa phù hợp với vấn đề của mình và Đặt lịch khám."
+        },
+        "footer": {
+            "name":"Công ty Cổ phần Công nghệ BookingCare",
+            "address": "Lô B4/D21, Khu đô thị mới Cầu Giấy, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Thành phố Hà Nội, Việt Nam",
+            "check": "ĐKKD số: 0106790291. Sở KHĐT Hà Nội cấp ngày 16/03/2015",
+            "office": "Văn phòng tại TP Hồ Chí Minh",
+            "office-address": "Số 01, Hồ Bá Kiện, Phường 15, Quận 10",
+            "support":"Hỗ trợ khách hàng",
+            "support-address": "support@bookingcare.vn (7h - 18h)",
+            "hotline":"Hotline",
+            "hotline-number":"024-7301-2468",
+            "hotline-time":"7h -18h"
+        },
+        "facility":{
+            "outstand-facility": "Cơ sở y tế nổi bật"
         }
     },
     "admin": {

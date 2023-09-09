@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+}
 .home-header-container {
     height: 60px;
     position: fixed;
@@ -17,14 +20,34 @@
             padding: 0 20px;
             .header-logo {
                 background: url("../../../assets/images/bookingcareLogo.svg") center center no-repeat;
-                width: 80%;
+                width: 100%;
             }
             i {
                 font-size: 25px;
             }
         }
         .center-content {
-            width: 50%;
+            width: 100%;
+            h5 {
+                a {
+                    text-decoration: none;
+                    outline: none;
+                    color: #333;
+                    &:hover {
+                        color: #45c3d2;
+                    }
+                }
+                cursor: pointer;
+                @media (max-width: 1200px) {
+                    font-size: 16px;
+                    padding: 0 10px;
+                }
+            }
+            .sub-text-header {
+                @media (max-width: 1200px) {
+                    display: none;
+                }
+            }
         }
         .right-content {
             width: 25%;

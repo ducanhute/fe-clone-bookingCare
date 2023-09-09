@@ -32,16 +32,15 @@ class HomePage extends Component {
         };
 
         return (
-            <>
+            <div className="wrap-home-page">
                 <HomeHeader isShowBanner={true} />
                 <Specialty Slider={Slider1} settings={settings} />
                 <OutStandFacility Slider={Slider1} settings={settings} />
                 <OutstandDoctor Slider={Slider1} settings={settings} />
-                <GuideBook Slider={Slider1} settings={guideBookSettings} />
+                {/* <GuideBook Slider={Slider1} settings={guideBookSettings} /> */}
                 <VideoAbout />
                 <Footer />
-                <div style={{ height: "100px" }}></div>
-            </>
+            </div>
         );
     }
 }

@@ -19,7 +19,7 @@ class OutstandDoctor extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.topDoctor !== this.props.topDoctor) {
             this.setState({
-                topDoctor: this.props.topDoctor,
+                topDoctor: this.props.topDoctor.reverse(),
             });
         }
     }
@@ -29,24 +29,27 @@ class OutstandDoctor extends Component {
     handleViewDetailDoctor = (doctor) => {
         this.props.history.push(`/detail-doctor/${doctor.id}`);
     };
-
+    removeAccents(str) {
+        return str
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/đ/g, "d")
+            .replace(/Đ/g, "D");
+    }
     render() {
         let { language } = this.props;
-        let arrayDoctor = this.props.topDoctor;
+        let arrayDoctor = this.props.topDoctor.slice(0, 20);
         let Slider = this.props.Slider;
         let settings = this.props.settings;
 
         return (
-            <div className="section-outstand-doctor share-slick-style">
+            <div className="section-outstand-doctor share-slick-style" id="doctor-section">
                 <div className="total-content">
                     <div className="wrap-content">
                         <div className="title-content d-flex justify-content-between align-items-center">
                             <h2 className="title-text">
                                 <FormattedMessage id="home-page.out-stand-doctor" />
                             </h2>
-                            <div className="see-more-btn">
-                                <FormattedMessage id="home-page.find" />
-                            </div>
                         </div>
                         <div className="slider-content">
                             <Slider {...settings}>
@@ -57,14 +60,23 @@ class OutstandDoctor extends Component {
                                         if (item.image) {
                                             imageBase64 = new Buffer(item.image, "base64").toString("binary");
                                         }
+
                                         let textVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
-                                        let textEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
+                                        let textEn = "";
+                                        if (item.positionData.valueVi === "Bác sĩ") {
+                                            textEn = `Doctor, ${item.firstName} ${item.lastName}`;
+                                        } else {
+                                            textEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
+                                        }
+
+                                        textEn = this.removeAccents(textEn);
+
                                         return (
                                             <div key={index} className="border-item" onClick={() => this.handleViewDetailDoctor(item)}>
                                                 <div className="wrap-item d-flex align-items-center flex-column">
                                                     <div className="image-slick" style={{ backgroundImage: `url(${imageBase64})` }}></div>
                                                     <h3>{language === LANGUAGES.VI ? textVi : textEn}</h3>
-                                                    <h3>Thần kinh</h3>
+                                                    <h3>{}</h3>
                                                 </div>
                                             </div>
                                         );

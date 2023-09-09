@@ -12,10 +12,13 @@ class ManageSpecialty extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
+            nameVi: "",
+            nameEn: "",
             imageBase64: "",
-            descriptionHTML: "",
-            descriptionMarkdown: "",
+            descriptionHTMLVi: "",
+            descriptionMarkdownVi: "",
+            descriptionHTMLEn: "",
+            descriptionMarkdownEn: "",
         };
     }
     async componentDidMount() {}
@@ -25,10 +28,16 @@ class ManageSpecialty extends Component {
         copyState[e.target.name] = e.target.value;
         this.setState(copyState);
     };
-    handleEditorChange = ({ html, text }) => {
+    handleEditorChangeVi = ({ html, text }) => {
         this.setState({
-            descriptionHTML: html,
-            descriptionMarkdown: text,
+            descriptionHTMLVi: html,
+            descriptionMarkdownVi: text,
+        });
+    };
+    handleEditorChangeEn = ({ html, text }) => {
+        this.setState({
+            descriptionHTMLEn: html,
+            descriptionMarkdownEn: text,
         });
     };
     handleOnechangeImage = async (e) => {
@@ -44,10 +53,13 @@ class ManageSpecialty extends Component {
     };
     handleSaveNewSpecialty = async () => {
         let res = await createNewSpecialty({
-            name: this.state.name,
+            nameVi: this.state.nameVi,
+            nameEn: this.state.nameEn,
             imageBase64: this.state.imageBase64,
-            descriptionHTML: this.state.descriptionHTML,
-            descriptionMarkdown: this.state.descriptionMarkdown,
+            descriptionHTMLVi: this.state.descriptionHTMLVi,
+            descriptionMarkdownVi: this.state.descriptionMarkdownVi,
+            descriptionHTMLEn: this.state.descriptionHTMLEn,
+            descriptionMarkdownEn: this.state.descriptionMarkdownEn,
         });
         if (res && res.errCode === 0) {
             toast.success("Create new specialty successfully!");
@@ -62,22 +74,44 @@ class ManageSpecialty extends Component {
 
                 <div className="add-new-specialty row">
                     <div className="col-6 form-group">
-                        <label>Tên chuyên khoa</label>
-                        <input value={this.state.name} name="name" onChange={(e) => this.handleOnechangeInput(e)} className="form-control" type="text"></input>
+                        <label>Tên chuyên khoa (Vietnamese)</label>
+                        <input
+                            value={this.state.nameVi}
+                            name="nameVi"
+                            onChange={(e) => this.handleOnechangeInput(e)}
+                            className="form-control"
+                            type="text"
+                        ></input>
+                        <label>Tên chuyên khoa(English)</label>
+                        <input
+                            value={this.state.nameEn}
+                            name="nameEn"
+                            onChange={(e) => this.handleOnechangeInput(e)}
+                            className="form-control"
+                            type="text"
+                        ></input>
                     </div>
                     <div className="col-6 form-group">
                         <label>Ảnh chuyên khoa</label>
                         <input onChange={(e) => this.handleOnechangeImage(e)} className="form-control-file" type="file"></input>
                     </div>
                     <div className="col-12">
+                        <h5 className="font-weight-bold my-2">Vietnamese content</h5>
                         <MdEditor
-                            value={this.state.descriptionMarkdown}
-                            style={{ height: "600px" }}
+                            value={this.state.descriptionMarkdownVi}
+                            style={{ height: "400px" }}
                             renderHTML={(text) => mdParser.render(text)}
-                            onChange={this.handleEditorChange}
+                            onChange={this.handleEditorChangeVi}
+                        />
+                        <h5 className="font-weight-bold mt-4">English content</h5>
+                        <MdEditor
+                            value={this.state.descriptionMarkdownEn}
+                            style={{ height: "400px" }}
+                            renderHTML={(text) => mdParser.render(text)}
+                            onChange={this.handleEditorChangeEn}
                         />
                     </div>
-                    <div className="col-12">
+                    <div className="col-12 my-4 text-right">
                         <button onClick={() => this.handleSaveNewSpecialty()} className="btn-save-specialty">
                             Save
                         </button>
