@@ -52,11 +52,13 @@ class DoctorSchedule extends Component {
         if (this.state.allDays !== prevState.allDays || this.props.doctorId !== prevProps.doctorId) {
             let { doctorId } = this.props;
             let { allDays } = this.state;
-            let res = await getScheduleByDate(doctorId, allDays[0].value);
-            if (res && res.errCode === 0) {
-                this.setState({
-                    allAvailableTimes: res.data ? res.data : [],
-                });
+            if (doctorId) {
+                let res = await getScheduleByDate(+doctorId, allDays[0].value);
+                if (res && res.errCode === 0) {
+                    this.setState({
+                        allAvailableTimes: res.data ? res.data : [],
+                    });
+                }
             }
         }
     }

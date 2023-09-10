@@ -58,7 +58,7 @@ class OutstandDoctor extends Component {
                                     arrayDoctor.map((item, index) => {
                                         let imageBase64 = "";
                                         if (item.image) {
-                                            imageBase64 = new Buffer(item.image, "base64").toString("binary");
+                                            imageBase64 = new Buffer.from(item.image, "base64").toString("binary");
                                         }
 
                                         let textVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;

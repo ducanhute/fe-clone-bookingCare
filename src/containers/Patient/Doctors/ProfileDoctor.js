@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./ProfileDoctor.scss";
 import { getProfileDoctorById } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils";
-import _, { size } from "lodash";
+import _ from "lodash";
 import moment from "moment";
 import "moment/locale/vi";
 import { FormattedMessage } from "react-intl";
@@ -18,8 +18,10 @@ class ProfileDoctorInfo extends Component {
         };
     }
     async componentDidMount() {
-        let data = await this.getInforDoctor(this.props.doctorId);
-        this.setState({ dataProfile: data, province: data && data.Doctor_Info && data.Doctor_Info.provinceData });
+        if (this.props.doctorId) {
+            let data = await this.getInforDoctor(this.props.doctorId);
+            this.setState({ dataProfile: data, province: data && data.Doctor_Info && data.Doctor_Info.provinceData });
+        }
     }
     getInforDoctor = async (doctorId) => {
         let result = {};
@@ -33,9 +35,11 @@ class ProfileDoctorInfo extends Component {
     };
     async componentDidUpdate(prevProps, prevState, savedProps) {
         if (prevProps.doctorId !== this.props.doctorId) {
-            let data = await this.getInforDoctor(this.props.doctorId);
+            if (this.props.doctorId) {
+                let data = await this.getInforDoctor(this.props.doctorId);
 
-            this.setState({ dataProfile: data, province: data && data.Doctor_Info && data.Doctor_Info.provinceData });
+                this.setState({ dataProfile: data, province: data && data.Doctor_Info && data.Doctor_Info.provinceData });
+            }
         }
     }
     renderTimeBooking = (dataScheduleTimeModal) => {

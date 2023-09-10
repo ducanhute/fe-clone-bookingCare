@@ -17,10 +17,12 @@ class Header extends Component {
     };
     goToViolation = (id) => {
         let element = document.getElementById(id);
-        element.scrollIntoView();
-        element.scrollIntoView(false);
-        element.scrollIntoView({ block: "nearest" });
-        element.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+        if (element) {
+            element.scrollIntoView();
+            element.scrollIntoView(false);
+            element.scrollIntoView({ block: "nearest" });
+            element.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+        }
     };
     render() {
         const data = [

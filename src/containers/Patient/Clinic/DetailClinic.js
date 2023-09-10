@@ -22,7 +22,7 @@ class DetailClinic extends Component {
     async componentDidMount() {
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
             let id = this.props.match.params.id;
-            let res = await getAllDetailClinicById({ id: id });
+            let res = await getAllDetailClinicById({ id: parseInt(id) });
             if (res && res.errCode === 0) {
                 let arrDoctorId = [];
                 if (res.data && !_.isEmpty(res.data)) {
