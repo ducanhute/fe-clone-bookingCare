@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAllSpecialty } from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
+import * as actions from "../../../store/actions";
 import { withRouter } from "react-router";
 import { LANGUAGES } from "../../../utils";
 
@@ -14,11 +15,18 @@ class Specialty extends Component {
         };
     }
     async componentDidMount() {
-        let res = await getAllSpecialty();
-        console.log("data", res);
-        if (res && res.errCode === 0) {
+        this.props.fetchAllSpecialty();
+        // let res = await getAllSpecialty();
+        // if (res && res.errCode === 0) {
+        //     this.setState({
+        //         dataSpecialty: res.data,
+        //     });
+        // }
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.allSpecialties !== this.props.allSpecialties) {
             this.setState({
-                dataSpecialty: res.data,
+                dataSpecialty: this.props.allSpecialties,
             });
         }
     }
@@ -28,8 +36,8 @@ class Specialty extends Component {
     render() {
         let Slider = this.props.Slider;
         let settings = this.props.settings;
-        let { dataSpecialty } = this.state;
-        let { language } = this.props;
+        // let { dataSpecialty } = this.state;
+        let { language, allSpecialties } = this.props;
         return (
             <div className="section-specialty share-slick-style" id="specialty">
                 <div className="total-content">
@@ -45,9 +53,9 @@ class Specialty extends Component {
                         </div>
                         <div className="slider-content">
                             <Slider {...settings}>
-                                {dataSpecialty &&
-                                    dataSpecialty.length > 0 &&
-                                    dataSpecialty.map((item, index) => {
+                                {allSpecialties &&
+                                    allSpecialties.length > 0 &&
+                                    allSpecialties.map((item, index) => {
                                         return (
                                             <div key={index} className="wrap-item cursor-pointer">
                                                 <div
@@ -72,11 +80,14 @@ const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
+        allSpecialties: state.admin.allSpecialties,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        fetchAllSpecialty: () => dispatch(actions.fetchAllSpecialty()),
+    };
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Specialty));

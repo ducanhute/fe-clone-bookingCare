@@ -235,6 +235,50 @@ export const fetchAllDoctorSuccess = (data) => ({
 export const fetchAllDoctorFailed = () => ({
     type: actionTypes.FETCH_ALL_DOCTOR_FAILED,
 });
+// get all Clinic
+export const fetchAllClinic = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllClinic();
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_CLINIC_SUCCESS,
+                    data: res.data,
+                });
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_CLINIC_FAILED,
+                });
+            }
+        } catch (e) {
+            console.log(e);
+            toast.error("Failed to get all clinic infomation!");
+            dispatch(fetchAllDoctorFailed());
+        }
+    };
+};
+// get all specialty
+export const fetchAllSpecialty = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllSpecialty();
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_SPECIALTY_SUCCESS,
+                    data: res.data,
+                });
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_SPECIALTY_SUCCESS,
+                });
+            }
+        } catch (e) {
+            console.log(e);
+            toast.error("Failed to get all specialty infomation!");
+            dispatch(fetchAllDoctorFailed());
+        }
+    };
+};
 // Save details info about doctor
 export const saveDetailInfoDoctor = (data) => {
     return async (dispatch, getState) => {
@@ -274,7 +318,7 @@ export const fetchAllScheduleTime = () => {
             }
         } catch (e) {
             console.log(e);
-            toast.error("Error editing user");
+            toast.error("Failded to get all  schedule infomation!");
             dispatch(fetchAllScheduleTimeFailed());
         }
     };
